@@ -10,10 +10,13 @@ import {
   viewChild,
 } from '@angular/core';
 import { BRAND, NAV_ITEMS } from '../../core/content';
+import { ContrastService } from '../../shared/contrast.service';
+import { Icon } from '../../shared/icon';
 import { ScrollService } from '../../shared/scroll.service';
 
 @Component({
   selector: 'tt-header',
+  imports: [Icon],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   host: {
@@ -27,7 +30,9 @@ export class Header {
   private readonly scroll = inject(ScrollService);
   private readonly toggleButton = viewChild<ElementRef<HTMLButtonElement>>('toggle');
   private readonly mobileNav = viewChild<ElementRef<HTMLElement>>('mobileNav');
+  private readonly progress = viewChild<ElementRef<HTMLElement>>('progress');
 
+  protected readonly contrast = inject(ContrastService);
   protected readonly brand = BRAND;
   protected readonly items = NAV_ITEMS;
   protected readonly active = this.scroll.activeSection;
@@ -47,6 +52,10 @@ export class Header {
         frame = win.requestAnimationFrame(() => {
           frame = 0;
           this.scrolled.set(win.scrollY > 24);
+          // Reading progress, written to the DOM directly to avoid change detection per frame.
+          const max = this.document.documentElement.scrollHeight - win.innerHeight;
+          const ratio = max > 0 ? Math.min(1, win.scrollY / max) : 0;
+          this.progress()?.nativeElement.style.setProperty('transform', `scaleX(${ratio})`);
         });
       };
       onScroll();

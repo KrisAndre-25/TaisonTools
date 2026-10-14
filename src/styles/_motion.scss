@@ -25,16 +25,18 @@
   transform: scale(0.96);
 }
 
+// Negative insets leave room for accents (é, á) and descenders (p, y, j), which
+// overflow the tight display line-height; a 0 inset would cut them off.
 [data-reveal='clip'] {
   opacity: 1;
-  clip-path: inset(0 0 100% 0);
+  clip-path: inset(-0.35em -0.25em 100% -0.25em);
   transform: translate3d(0, 12px, 0);
 }
 
 [data-reveal].is-revealed {
   opacity: 1;
   transform: none;
-  clip-path: inset(0 0 0 0);
+  clip-path: inset(-0.35em -0.25em -0.35em -0.25em);
 }
 
 // Hero entrance sequence

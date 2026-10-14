@@ -37,67 +37,72 @@
     </div>
 
     <!-- The same element, from design file to production -->
-    <figure class="spec" aria-label="Un mismo componente diseñado, programado y publicado">
-      <div class="spec__head">
-        <span class="t-label">cta / hablemos</span>
-        <span class="spec__status t-label">
-          <span class="dot" [class.is-live]="phase() === 2"></span>
-          {{ phases[phase()].caption }}
-        </span>
-      </div>
-
-      <div class="spec__tabs" role="group" aria-label="Fase">
-        @for (p of phases; track p.key; let i = $index) {
-          <button
-            type="button"
-            class="spec__tab t-label"
-            [class.is-active]="phase() === i"
-            [attr.aria-pressed]="phase() === i"
-            (click)="select(i)"
-          >
-            <span class="t-dim">{{ p.number }}</span> {{ p.label }}
-          </button>
-        }
-      </div>
-
-      <div class="spec__stage" [attr.data-phase]="phases[phase()].key">
-        <!-- 01 Design -->
-        <div class="layer layer--design" [class.is-active]="phase() === 0" aria-hidden="true">
-          <div class="wire">
-            <span class="wire__bar wire__bar--lg"></span>
-            <span class="wire__bar wire__bar--md"></span>
-            <span class="wire__bar wire__bar--sm"></span>
-            <div class="wire__target">
-              <span class="wire__btn">Hablemos →</span>
-              <span class="wire__handle wire__handle--tl"></span>
-              <span class="wire__handle wire__handle--tr"></span>
-              <span class="wire__handle wire__handle--bl"></span>
-              <span class="wire__handle wire__handle--br"></span>
-              <span class="wire__measure t-mono">168 × 52</span>
-            </div>
-          </div>
-          <dl class="props t-mono">
-            <div>
-              <dt>fill</dt>
-              <dd><i class="swatch"></i>#E10600</dd>
-            </div>
-            <div>
-              <dt>radius</dt>
-              <dd>999</dd>
-            </div>
-            <div>
-              <dt>font</dt>
-              <dd>Inter Tight 500</dd>
-            </div>
-          </dl>
+    <div class="spec-wrap">
+      <span class="spec-wrap__corner spec-wrap__corner--tl" aria-hidden="true"></span>
+      <span class="spec-wrap__corner spec-wrap__corner--tr" aria-hidden="true"></span>
+      <span class="spec-wrap__corner spec-wrap__corner--bl" aria-hidden="true"></span>
+      <span class="spec-wrap__corner spec-wrap__corner--br" aria-hidden="true"></span>
+      <figure class="spec" aria-label="Un mismo componente diseñado, programado y publicado">
+        <div class="spec__head">
+          <span class="t-label">cta / hablemos</span>
+          <span class="spec__status t-label">
+            <span class="dot" [class.is-live]="phase() === 2"></span>
+            {{ phases[phase()].caption }}
+          </span>
         </div>
 
-        <!-- 02 Develop -->
-        <pre
-          class="layer layer--code t-mono"
-          [class.is-active]="phase() === 1"
-          aria-hidden="true"
-        ><code><span class="c-dim">01</span>  <span class="c-tag">&lt;a</span> <span class="c-attr">class</span>=<span class="c-str">"btn btn--primary"</span><span class="c-tag">&gt;</span>
+        <div class="spec__tabs" role="group" aria-label="Fase">
+          @for (p of phases; track p.key; let i = $index) {
+            <button
+              type="button"
+              class="spec__tab t-label"
+              [class.is-active]="phase() === i"
+              [attr.aria-pressed]="phase() === i"
+              (click)="select(i)"
+            >
+              <span class="t-dim">{{ p.number }}</span> {{ p.label }}
+            </button>
+          }
+        </div>
+
+        <div class="spec__stage" [attr.data-phase]="phases[phase()].key">
+          <!-- 01 Design -->
+          <div class="layer layer--design" [class.is-active]="phase() === 0" aria-hidden="true">
+            <div class="wire">
+              <span class="wire__bar wire__bar--lg"></span>
+              <span class="wire__bar wire__bar--md"></span>
+              <span class="wire__bar wire__bar--sm"></span>
+              <div class="wire__target">
+                <span class="wire__btn">Hablemos →</span>
+                <span class="wire__handle wire__handle--tl"></span>
+                <span class="wire__handle wire__handle--tr"></span>
+                <span class="wire__handle wire__handle--bl"></span>
+                <span class="wire__handle wire__handle--br"></span>
+                <span class="wire__measure t-mono">168 × 52</span>
+              </div>
+            </div>
+            <dl class="props t-mono">
+              <div>
+                <dt>fill</dt>
+                <dd><i class="swatch"></i>#E10600</dd>
+              </div>
+              <div>
+                <dt>radius</dt>
+                <dd>999</dd>
+              </div>
+              <div>
+                <dt>font</dt>
+                <dd>Inter Tight 500</dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- 02 Develop -->
+          <pre
+            class="layer layer--code t-mono"
+            [class.is-active]="phase() === 1"
+            aria-hidden="true"
+          ><code><span class="c-dim">01</span>  <span class="c-tag">&lt;a</span> <span class="c-attr">class</span>=<span class="c-str">"btn btn--primary"</span><span class="c-tag">&gt;</span>
 <span class="c-dim">02</span>    Hablemos
 <span class="c-dim">03</span>  <span class="c-tag">&lt;/a&gt;</span>
 <span class="c-dim">04</span>
@@ -106,27 +111,28 @@
 <span class="c-dim">07</span>    <span class="c-attr">border-radius</span>: <span class="c-num">999px</span>;
 <span class="c-dim">08</span>  &#125;</code></pre>
 
-        <!-- 03 Deploy -->
-        <div
-          class="layer layer--deploy t-mono"
-          [class.is-active]="phase() === 2"
-          aria-hidden="true"
-        >
-          <p><span class="c-dim">$</span> ng build</p>
-          <p class="c-ok">✓ 0 errores · 0 advertencias</p>
-          <p><span class="c-dim">$</span> ng test</p>
-          <p class="c-ok">✓ pruebas aprobadas</p>
-          <p><span class="c-dim">$</span> deploy --prod</p>
-          <p class="deploy__live"><span class="dot"></span> En línea</p>
+          <!-- 03 Deploy -->
+          <div
+            class="layer layer--deploy t-mono"
+            [class.is-active]="phase() === 2"
+            aria-hidden="true"
+          >
+            <p><span class="c-dim">$</span> ng build</p>
+            <p class="c-ok">✓ 0 errores · 0 advertencias</p>
+            <p><span class="c-dim">$</span> ng test</p>
+            <p class="c-ok">✓ pruebas aprobadas</p>
+            <p><span class="c-dim">$</span> deploy --prod</p>
+            <p class="deploy__live"><span class="dot"></span> En línea</p>
+          </div>
         </div>
-      </div>
 
-      @if (autoplay()) {
-        @for (p of [phase()]; track p) {
-          <span class="spec__progress" aria-hidden="true"></span>
+        @if (autoplay()) {
+          @for (p of [phase()]; track p) {
+            <span class="spec__progress" aria-hidden="true"></span>
+          }
         }
-      }
-    </figure>
+      </figure>
+    </div>
   </div>
 
   <div class="hero__foot container">

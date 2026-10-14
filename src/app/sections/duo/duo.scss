@@ -7,7 +7,7 @@
 .duo {
   border-top: 1px solid var(--tt-border);
   background:
-    radial-gradient(ellipse 50% 40% at 50% 45%, rgba(225, 6, 0, 0.06), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 50% 45%, rgb(var(--tt-accent-rgb) / 0.06), transparent 70%),
     var(--tt-bg-2);
 }
 
@@ -21,7 +21,7 @@
 .duo__rule {
   width: 2.5rem;
   height: 1px;
-  background: var(--tt-border-strong);
+  background: var(--tt-white);
 }
 
 .duo__title {
@@ -192,9 +192,12 @@
     place-items: center;
     width: 56px;
     height: 56px;
-    border: 1px solid var(--tt-red);
+    border: 1px solid var(--tt-white);
     border-radius: 50%;
     background: var(--tt-bg-2);
+    box-shadow:
+      0 0 0 6px var(--tt-bg-2),
+      0 0 0 7px var(--tt-red);
     color: var(--tt-red);
     font-size: 1.5rem;
     font-weight: 300;
@@ -222,6 +225,7 @@
   }
 
   &__item {
+    position: relative;
     display: grid;
     align-content: start;
     gap: var(--tt-space-3);
@@ -235,6 +239,23 @@
       & + & {
         padding-left: var(--tt-space-5);
         border-left: 1px solid var(--tt-border);
+      }
+    }
+
+    // Short white tick on the shared top rule
+    &::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 24px;
+      height: 1px;
+      background: var(--tt-white);
+    }
+
+    & + &::before {
+      @include bp.up(md) {
+        left: var(--tt-space-5);
       }
     }
 

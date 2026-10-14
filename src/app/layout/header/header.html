@@ -27,6 +27,20 @@
       </ul>
     </nav>
 
+    <button
+      type="button"
+      class="contrast"
+      [attr.aria-pressed]="contrast.high()"
+      [attr.title]="
+        contrast.high() ? 'Desactivar modo blanco y negro' : 'Activar modo blanco y negro'
+      "
+      (click)="contrast.toggle()"
+    >
+      <tt-icon name="contrast" />
+      <span class="contrast__label">B/N</span>
+      <span class="visually-hidden">Modo blanco y negro de alto contraste</span>
+    </button>
+
     <a class="header__cta btn btn--primary" href="#contacto" (click)="navigate($event, 'contacto')">
       Hablemos
     </a>
@@ -44,6 +58,8 @@
       <span class="toggle__line toggle__line--bottom" aria-hidden="true"></span>
     </button>
   </div>
+
+  <span #progress class="progress" aria-hidden="true"></span>
 
   <div
     id="mobile-menu"

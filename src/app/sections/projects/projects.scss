@@ -105,10 +105,8 @@
   left: var(--tt-space-4);
   padding: 0.35rem 0.7rem;
   border-radius: var(--tt-radius-pill);
-  background: rgba(5, 5, 5, 0.75);
-  border: 1px solid var(--tt-border);
-  color: var(--tt-text);
-  backdrop-filter: blur(6px);
+  background: var(--tt-white);
+  color: var(--tt-bg);
 }
 
 .project__info {
@@ -185,13 +183,14 @@
     height: 48px;
     border-radius: 50%;
     background: var(--tt-red);
+    color: var(--tt-on-accent);
     transition: transform var(--tt-dur-hover) var(--tt-ease-out);
   }
 
   &:hover,
   &:focus-visible {
     border-color: var(--tt-red);
-    background: rgba(225, 6, 0, 0.04);
+    background: rgb(var(--tt-accent-rgb) / 0.04);
 
     .slot__title {
       color: var(--tt-white);

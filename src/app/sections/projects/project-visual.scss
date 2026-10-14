@@ -5,7 +5,7 @@
   place-items: center;
   padding: 8%;
   background:
-    radial-gradient(circle at 70% 20%, rgba(225, 6, 0, 0.12), transparent 50%),
+    radial-gradient(circle at 70% 20%, rgb(var(--tt-accent-rgb) / 0.12), transparent 50%),
     linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 40px 40px,
     linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 40px 40px,
     var(--tt-surface);
@@ -90,7 +90,7 @@
       padding: 4px 9px;
       border-radius: 999px;
       background: var(--tt-red);
-      color: var(--tt-white);
+      color: var(--tt-on-accent);
       font-size: 0.55rem;
       font-weight: 500;
     }
@@ -115,7 +115,7 @@
 
   .is-today {
     border-color: var(--tt-red);
-    background: rgba(225, 6, 0, 0.2);
+    background: rgb(var(--tt-accent-rgb) / 0.2);
   }
 }
 
@@ -152,7 +152,7 @@
     padding: 9px;
     border-radius: 999px;
     background: var(--tt-red);
-    color: var(--tt-white);
+    color: var(--tt-on-accent);
     font-size: 0.7rem;
     text-align: center;
   }
@@ -231,6 +231,10 @@
   &__out {
     fill: var(--tt-red) !important;
     stroke: var(--tt-red) !important;
+  }
+
+  &__text .flow__out-label {
+    fill: var(--tt-on-accent);
   }
 
   &__text text {

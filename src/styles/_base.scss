@@ -77,7 +77,7 @@ dd {
 
 ::selection {
   background: var(--tt-red);
-  color: var(--tt-white);
+  color: var(--tt-on-accent);
 }
 
 :focus-visible {
@@ -93,7 +93,7 @@ dd {
   z-index: calc(var(--tt-z-overlay) + 1);
   padding: var(--tt-space-3) var(--tt-space-4);
   background: var(--tt-red);
-  color: var(--tt-white);
+  color: var(--tt-on-accent);
   font-family: var(--tt-font-mono);
   font-size: var(--tt-fs-sm);
   border-radius: var(--tt-radius-sm);

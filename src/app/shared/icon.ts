@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 
-export type IconName = 'arrow-right' | 'arrow-up-right' | 'arrow-down' | 'arrow-up';
+export type IconName = 'arrow-right' | 'arrow-up-right' | 'arrow-down' | 'arrow-up' | 'contrast';
 
 /** Minimal stroke icon set — inline SVG, inherits currentColor. */
 @Component({
@@ -28,6 +28,10 @@ export type IconName = 'arrow-right' | 'arrow-up-right' | 'arrow-down' | 'arrow-
         }
         @case ('arrow-up') {
           <path d="M12 20V4M6 10l6-6 6 6" />
+        }
+        @case ('contrast') {
+          <circle cx="12" cy="12" r="8.5" />
+          <path d="M12 3.5a8.5 8.5 0 0 1 0 17Z" fill="currentColor" stroke="none" />
         }
       }
     </svg>

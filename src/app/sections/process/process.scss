@@ -58,6 +58,7 @@
 
   &__total {
     padding-bottom: 0.6rem;
+    color: var(--tt-white);
   }
 }
 
@@ -119,7 +120,10 @@
     }
 
     .is-active & {
-      box-shadow: 0 0 0 6px var(--tt-red-soft);
+      background: var(--tt-white);
+      box-shadow:
+        0 0 0 3px var(--tt-red),
+        0 0 0 8px var(--tt-red-soft);
     }
   }
 

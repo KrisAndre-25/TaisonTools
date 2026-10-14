@@ -65,6 +65,7 @@
   }
 
   &--primary {
+    --btn-fg: var(--tt-on-accent);
     --btn-bg: var(--tt-red);
     --btn-border: var(--tt-red);
     --btn-fill: var(--tt-white);

@@ -111,9 +111,9 @@
 
   .is-open & {
     transform: rotate(45deg);
-    background: var(--tt-red);
-    border-color: var(--tt-red);
-    color: var(--tt-white);
+    background: var(--tt-white);
+    border-color: var(--tt-white);
+    color: var(--tt-bg);
   }
 }
 

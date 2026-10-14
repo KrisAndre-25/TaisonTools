@@ -7,7 +7,7 @@
 .contact {
   border-top: 1px solid var(--tt-border);
   background:
-    radial-gradient(ellipse 60% 50% at 15% 0%, rgba(225, 6, 0, 0.08), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 15% 0%, rgb(var(--tt-accent-rgb) / 0.08), transparent 70%),
     var(--tt-bg-2);
 }
 
@@ -20,7 +20,7 @@
 .contact__rule {
   width: 2.5rem;
   height: 1px;
-  background: var(--tt-border-strong);
+  background: var(--tt-white);
 }
 
 .contact__title {
@@ -212,7 +212,7 @@
     height: 48px;
     border-radius: 50%;
     background: var(--tt-red);
-    color: var(--tt-white);
+    color: var(--tt-on-accent);
   }
 
   p {
