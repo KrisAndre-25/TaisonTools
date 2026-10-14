@@ -1,59 +1,85 @@
-# Taisontools
+<div align="center">
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.19.
+# TAISON TOOLS
 
-## Development server
+**Desarrollo & Diseño UX/UI**
 
-To start a local development server, run:
+Estudio de software y diseño · Santiago, Chile
+
+</div>
+
+---
+
+TaisonTools es un estudio formado por un desarrollador full-stack y un diseñador UX/UI. Creamos sitios, aplicaciones, software a medida y automatizaciones donde cada pantalla se piensa y se construye en conjunto: el diseño llega al código listo para construirse, y el código respeta cada decisión de diseño.
+
+Este repositorio contiene el sitio del estudio.
+
+## Equipo
+
+| | Disciplina | Rol |
+| --- | --- | --- |
+| **Kristopher Astudillo** | Desarrollo | Full-Stack Developer · Analista Programador |
+| **Rodrigo Contador** | Diseño | Diseñador Gráfico · UX/UI Designer |
+
+Un equipo pequeño a propósito: quien encarga un proyecto conversa directamente con las personas que lo diseñan y lo programan.
+
+## Servicios
+
+Software a medida · Desarrollo web · UX/UI · Soluciones digitales · Automatización · Productos digitales
+
+## El sitio
+
+- **Inicio a pantalla completa** — el logotipo sobre un panal de hexágonos interactivo dibujado en canvas, que reacciona al cursor.
+- **Loader propio** — la O de TOOLS se completa de 1% a 100% mientras su cursor da una vuelta completa.
+- **Movimiento con intención** — titulares que entran por palabra, secciones que aparecen al hacer scroll y un proceso que avanza con la lectura.
+- **Modo de alto contraste** — todo el sitio en negro con tinta blanca, a un clic o según la preferencia del sistema.
+- **Accesible** — pensado para WCAG 2.2 AA: contraste verificado, navegación completa con teclado, foco visible, textos alternativos y respeto por *reducir movimiento*.
+
+## Tecnología
+
+| | |
+| --- | --- |
+| Framework | Angular 21 — componentes standalone y signals |
+| Lenguaje | TypeScript |
+| Estilos | SCSS con design tokens propios |
+| Pruebas | Vitest |
+| Tipografías | Inter Tight · JetBrains Mono |
+
+## Desarrollo local
+
+Requiere Node.js y npm.
 
 ```bash
-ng serve
+npm install     # instala las dependencias
+npm start       # servidor local en http://localhost:4200
+npm run build   # build de producción en dist/
+npm test        # pruebas unitarias
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Estructura
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+src/
+├── app/
+│   ├── core/       contenido del sitio y modelos
+│   ├── layout/     header y footer
+│   ├── pages/      página de inicio
+│   ├── sections/   inicio, servicios, proceso, proyectos, stack, nosotros, contacto
+│   └── shared/     logo, loader, panal interactivo, texto escalonado, servicios comunes
+└── styles/         tokens, tipografía, layout, botones y movimiento
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+<!--
+  Imagen de cierre: guarda la imagen (con su licencia) en docs/cover.png y
+  reemplaza este comentario por:
 
-## Building
+  <p align="center"><img src="docs/cover.png" alt="TaisonTools" width="100%"></p>
+-->
 
-To build the project run:
+<div align="center">
 
-```bash
-ng build
-```
+**TAISON TOOLS** · Desarrollo & Diseño UX/UI · Santiago, Chile
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+</div>
