@@ -1,0 +1,7 @@
+main {
+  position: relative;
+  z-index: 1;
+  outline: none;
+  // Reveal transforms (±36px) must never create horizontal scroll; clip keeps sticky working.
+  overflow-x: clip;
+}

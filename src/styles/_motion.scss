@@ -1,0 +1,108 @@
+// Scroll reveal — elements opt in via the [ttReveal] directive, which sets
+// data-reveal="<variant>" and toggles .is-revealed when they enter the viewport.
+[data-reveal] {
+  opacity: 0;
+  transition:
+    opacity var(--tt-dur-enter) var(--tt-ease-out),
+    transform var(--tt-dur-enter) var(--tt-ease-out),
+    clip-path var(--tt-dur-major) var(--tt-ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal='up'] {
+  transform: translate3d(0, 28px, 0);
+}
+
+[data-reveal='left'] {
+  transform: translate3d(-36px, 0, 0);
+}
+
+[data-reveal='right'] {
+  transform: translate3d(36px, 0, 0);
+}
+
+[data-reveal='scale'] {
+  transform: scale(0.96);
+}
+
+// Negative insets leave room for accents (é, á) and descenders (p, y, j), which
+// overflow the tight display line-height; a 0 inset would cut them off.
+[data-reveal='clip'] {
+  opacity: 1;
+  clip-path: inset(-0.35em -0.25em 100% -0.25em);
+  transform: translate3d(0, 12px, 0);
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(-0.35em -0.25em -0.35em -0.25em);
+}
+
+// Hero entrance sequence
+@keyframes tt-enter-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes tt-enter-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes tt-draw-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes tt-line-rise {
+  from {
+    transform: translate3d(0, 105%, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+}
+
+// Contrast toggle cross-fade (View Transitions API)
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 420ms;
+  animation-timing-function: var(--tt-ease-out);
+}

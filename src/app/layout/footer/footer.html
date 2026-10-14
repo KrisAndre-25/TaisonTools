@@ -1,0 +1,38 @@
+<footer class="footer theme-dark">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <tt-logo class="footer__logo" />
+        <p class="t-label">Engineering <span class="t-accent">×</span> Design</p>
+      </div>
+
+      <nav class="footer__nav" aria-label="Pie de página">
+        <p class="t-label t-dim">Índice</p>
+        <ul>
+          @for (link of links; track link.id) {
+            <li>
+              <a class="link" [href]="'#' + link.id" (click)="navigate($event, link.id)">{{
+                link.label
+              }}</a>
+            </li>
+          }
+        </ul>
+      </nav>
+
+      <div class="footer__place">
+        <p class="t-label t-dim">Estudio</p>
+        <p>{{ brand.location }}</p>
+        <a class="link" [href]="'mailto:' + brand.email">{{ brand.email }}</a>
+        <p class="t-mono t-dim footer__coords">33.45° S · 70.66° O</p>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="t-label t-dim">© {{ year }} {{ brand.name }}</p>
+      <p class="t-label t-dim footer__built">Diseñado y desarrollado por el mismo equipo</p>
+      <a class="footer__top-link t-label" href="#inicio" (click)="navigate($event, 'inicio')">
+        Volver arriba <tt-icon name="arrow-up" />
+      </a>
+    </div>
+  </div>
+</footer>

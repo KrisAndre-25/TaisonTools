@@ -1,0 +1,203 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+.projects {
+  border-top: 1px solid var(--tt-border);
+}
+
+// Asymmetric editorial grid: one wide feature, then two offset columns, then the open slot
+.projects__grid {
+  display: grid;
+  gap: clamp(3.5rem, 2rem + 5vw, 7rem) var(--tt-space-6);
+
+  @include bp.up(md) {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+.project {
+  display: grid;
+  gap: var(--tt-space-5);
+  align-content: start;
+
+  @include bp.up(md) {
+    &--1 {
+      grid-column: 1 / -1;
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      align-items: end;
+      gap: var(--tt-space-7);
+    }
+
+    &--2 {
+      grid-column: 1 / span 5;
+    }
+
+    &--3 {
+      grid-column: 7 / -1;
+      margin-top: clamp(4rem, 2rem + 8vw, 10rem);
+    }
+  }
+}
+
+.project__media {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--tt-border);
+  border-radius: var(--tt-radius-md);
+  aspect-ratio: 4 / 5;
+  background: var(--tt-surface);
+
+  .project--1 & {
+    aspect-ratio: 16 / 10;
+  }
+
+  .project--3 & {
+    aspect-ratio: 4 / 3;
+  }
+
+  img,
+  tt-project-visual {
+    transition: transform 900ms var(--tt-ease-out);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  // Red frame that draws in on hover
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid var(--tt-accent);
+    opacity: 0;
+    transition: opacity var(--tt-dur-hover) var(--tt-ease-out);
+    pointer-events: none;
+  }
+}
+
+@include bp.hover {
+  .project:hover {
+    .project__media::after {
+      opacity: 1;
+    }
+
+    img,
+    tt-project-visual {
+      transform: scale(1.035);
+    }
+
+    .project__name {
+      transform: translateX(6px);
+    }
+  }
+}
+
+.project__badge {
+  position: absolute;
+  top: var(--tt-space-4);
+  left: var(--tt-space-4);
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--tt-radius-pill);
+  background: var(--tt-fg);
+  color: var(--tt-bg);
+}
+
+.project__info {
+  display: grid;
+  gap: var(--tt-space-3);
+}
+
+.project__top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--tt-space-2) var(--tt-space-4);
+  padding-bottom: var(--tt-space-3);
+  border-bottom: 1px solid var(--tt-border);
+}
+
+.project__name {
+  transition: transform var(--tt-dur-hover) var(--tt-ease-out);
+}
+
+.project__desc {
+  max-width: 44ch;
+}
+
+.project__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--tt-space-2);
+  margin-top: var(--tt-space-2);
+}
+
+.project__soon,
+.project__link {
+  margin-top: var(--tt-space-3);
+}
+
+// ------------------------------------------------------------------ open slot
+.slot {
+  display: grid;
+  gap: var(--tt-space-4);
+  padding: clamp(2rem, 1.5rem + 3vw, 4rem);
+  border: 1px dashed var(--tt-border-strong);
+  border-radius: var(--tt-radius-md);
+  transition:
+    opacity var(--tt-dur-enter) var(--tt-ease-out),
+    transform var(--tt-dur-enter) var(--tt-ease-out),
+    border-color var(--tt-dur-hover) var(--tt-ease-out),
+    background var(--tt-dur-hover) var(--tt-ease-out);
+
+  @include bp.up(md) {
+    grid-column: 1 / -1;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--tt-space-7);
+  }
+
+  &__title {
+    color: var(--tt-muted);
+    transition: color var(--tt-dur-hover);
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tt-space-3);
+    color: var(--tt-fg);
+    font-weight: 500;
+  }
+
+  &__arrow {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--tt-accent);
+    color: var(--tt-on-accent);
+    transition: transform var(--tt-dur-hover) var(--tt-ease-out);
+  }
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--tt-accent);
+    background: rgb(var(--tt-accent-rgb) / 0.04);
+
+    .slot__title {
+      color: var(--tt-fg);
+    }
+
+    .slot__arrow {
+      transform: translateX(6px);
+    }
+  }
+}

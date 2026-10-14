@@ -1,0 +1,322 @@
+@use 'breakpoints' as bp;
+
+:host {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: var(--tt-z-header);
+  display: block;
+  animation: tt-enter-fade 600ms var(--tt-ease-out) both;
+}
+
+.header__bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--tt-space-5);
+
+  @include bp.up(lg) {
+    @include bp.down(xl) {
+      gap: var(--tt-space-3);
+    }
+  }
+  height: var(--tt-header-h);
+}
+
+// Backdrop that fades in once the page scrolls
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  height: var(--tt-header-h);
+  background: rgb(var(--tt-bg-rgb) / 0.85);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--tt-border);
+  opacity: 0;
+  transition: opacity var(--tt-dur-hover) var(--tt-ease-out);
+}
+
+:host(.is-scrolled) .header::before {
+  opacity: 1;
+}
+
+:host(.is-open) .header::before {
+  opacity: 0;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-right: auto;
+
+  &__logo {
+    width: clamp(132px, 110px + 4vw, 176px);
+  }
+}
+
+.nav {
+  display: none;
+
+  @include bp.up(lg) {
+    display: block;
+  }
+
+  &__list {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  &__link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    --nav-pad: 0.8rem;
+
+    padding: 0.5rem var(--nav-pad);
+    font-size: 0.9rem;
+    color: var(--tt-muted);
+    transition: color var(--tt-dur-micro) var(--tt-ease-out);
+
+    // Tighter on 1024–1279px so the longer CTA label fits
+    @include bp.down(xl) {
+      --nav-pad: 0.5rem;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: var(--nav-pad);
+      right: var(--nav-pad);
+      bottom: 0.2rem;
+      height: 1px;
+      background: var(--tt-accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform var(--tt-dur-hover) var(--tt-ease-out);
+    }
+
+    &:hover,
+    &.is-active {
+      color: var(--tt-fg);
+    }
+
+    &:hover::after,
+    &.is-active::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+}
+
+// Black & white mode toggle
+.contrast {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 48px;
+  min-width: 48px;
+  justify-content: center;
+  padding: 0 0.85rem;
+  border: 1px solid var(--tt-border-strong);
+  border-radius: var(--tt-radius-pill);
+  color: var(--tt-fg);
+  font-family: var(--tt-font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  transition:
+    background var(--tt-dur-micro),
+    color var(--tt-dur-micro),
+    border-color var(--tt-dur-micro);
+
+  tt-icon {
+    font-size: 1.05rem;
+    transition: transform var(--tt-dur-hover) var(--tt-ease-out);
+  }
+
+  &:hover {
+    border-color: var(--tt-fg);
+
+    tt-icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  &[aria-pressed='true'] {
+    background: var(--tt-fg);
+    border-color: var(--tt-fg);
+    color: var(--tt-bg);
+  }
+
+  // Icon only on phones and on the tight 1024–1279px desktop range
+  &__label {
+    @include bp.down(sm) {
+      display: none;
+    }
+
+    @include bp.up(lg) {
+      @include bp.down(xl) {
+        display: none;
+      }
+    }
+  }
+
+  @include bp.down(sm) {
+    padding: 0;
+  }
+
+  @include bp.up(lg) {
+    @include bp.down(xl) {
+      padding: 0;
+    }
+  }
+}
+
+// Thin white reading-progress line under the bar
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--tt-header-h) - 1px);
+  z-index: 2;
+  height: 1px;
+  background: var(--tt-fg);
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  transition: opacity var(--tt-dur-hover);
+
+  :host(.is-scrolled) & {
+    opacity: 0.9;
+  }
+
+  :host(.is-open) & {
+    opacity: 0;
+  }
+}
+
+.header__cta {
+  display: none;
+
+  @include bp.down(xl) {
+    padding-inline: 1.1rem;
+  }
+
+  @include bp.up(lg) {
+    display: inline-flex;
+  }
+}
+
+.toggle {
+  position: relative;
+  display: grid;
+  place-content: center;
+  gap: 6px;
+  width: 48px;
+  height: 48px;
+  margin-right: -12px;
+
+  @include bp.up(lg) {
+    display: none;
+  }
+
+  &__line {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--tt-fg);
+    transition: transform var(--tt-dur-hover) var(--tt-ease-out);
+  }
+
+  &[aria-expanded='true'] .toggle__line--top {
+    transform: translateY(3.75px) rotate(45deg);
+  }
+
+  &[aria-expanded='true'] .toggle__line--bottom {
+    transform: translateY(-3.75px) rotate(-45deg);
+  }
+}
+
+// Mobile overlay
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  background: var(--tt-bg);
+  clip-path: inset(0 0 100% 0);
+  visibility: hidden;
+  transition:
+    clip-path 600ms var(--tt-ease-in-out),
+    visibility 0s linear 600ms;
+
+  :host(.is-open) & {
+    clip-path: inset(0 0 0 0);
+    visibility: visible;
+    transition:
+      clip-path 600ms var(--tt-ease-in-out),
+      visibility 0s;
+  }
+
+  @include bp.up(lg) {
+    display: none;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: calc(var(--tt-header-h) + var(--tt-space-6));
+    padding-bottom: var(--tt-space-6);
+    overflow-y: auto;
+  }
+
+  &__list {
+    border-top: 1px solid var(--tt-border);
+  }
+
+  &__item {
+    border-bottom: 1px solid var(--tt-border);
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+    transition:
+      opacity 300ms var(--tt-ease-out),
+      transform 300ms var(--tt-ease-out);
+
+    :host(.is-open) & {
+      opacity: 1;
+      transform: none;
+      transition-duration: 600ms;
+      transition-delay: calc(200ms + var(--i) * 55ms);
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: baseline;
+    gap: var(--tt-space-4);
+    padding: 0.85rem 0;
+    font-size: clamp(1.9rem, 1.2rem + 4vw, 2.75rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    color: var(--tt-fg);
+
+    &.is-active .menu__index {
+      color: var(--tt-accent);
+    }
+  }
+
+  &__index {
+    min-width: 2ch;
+  }
+
+  &__foot {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--tt-space-4);
+    padding-top: var(--tt-space-6);
+  }
+}

@@ -1,0 +1,88 @@
+:host {
+  display: inline-block;
+  line-height: 0;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.logo__part {
+  fill: var(--tt-fg);
+}
+
+.logo__ring {
+  fill: none;
+  stroke: var(--tt-fg);
+}
+
+// Rotates around the centre of the "O" ring (user units of the viewBox).
+.logo__wrench {
+  fill: var(--tt-accent);
+  transform-box: view-box;
+  transform-origin: 3150.5px 277.5px;
+  transition: transform 700ms var(--tt-ease-out);
+}
+
+// Static logo (header, footer): the wrench gives a quarter turn on hover.
+:host(:not(.is-interactive):hover) .logo__wrench {
+  transform: rotate(45deg) !important;
+}
+
+// Interactive logo: draws itself in, then follows the pointer.
+:host(.is-interactive) {
+  cursor: pointer;
+
+  .logo__part--taison {
+    animation: logo-rise 900ms var(--tt-ease-out) 150ms both;
+  }
+
+  .logo__part--t,
+  .logo__part--ols {
+    animation: logo-fade 700ms var(--tt-ease-out) 450ms both;
+  }
+
+  .logo__ring {
+    stroke-dasharray: 1;
+    animation: logo-draw 1000ms var(--tt-ease-out) 450ms both;
+  }
+
+  .logo__wrench-intro {
+    transform-box: view-box;
+    transform-origin: 3150.5px 277.5px;
+    animation: logo-wrench 900ms var(--tt-ease-out) 1050ms both;
+  }
+}
+
+// Paths sit inside the potrace group (×10, y flipped), so -400 local units
+// starts the word 40 user units lower.
+@keyframes logo-rise {
+  from {
+    opacity: 0;
+    transform: translateY(-400px);
+  }
+}
+
+@keyframes logo-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes logo-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes logo-wrench {
+  from {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0.6);
+  }
+}

@@ -1,0 +1,95 @@
+<header class="header">
+  <div class="header__bar container" [class.theme-dark]="menuOpen()">
+    <a
+      class="brand"
+      href="#inicio"
+      (click)="navigate($event, 'inicio')"
+      aria-label="TaisonTools, ir al inicio"
+    >
+      <tt-logo class="brand__logo" label="" />
+    </a>
+
+    <nav class="nav" aria-label="Principal">
+      <ul class="nav__list">
+        @for (item of items; track item.id) {
+          <li>
+            <a
+              class="nav__link"
+              [class.is-active]="active() === item.id"
+              [attr.aria-current]="active() === item.id ? 'true' : null"
+              [href]="'#' + item.id"
+              (click)="navigate($event, item.id)"
+              >{{ item.label }}</a
+            >
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <button
+      type="button"
+      class="contrast"
+      [attr.aria-pressed]="contrast.high()"
+      [attr.title]="
+        contrast.high() ? 'Volver al modo claro' : 'Cambiar a modo oscuro de alto contraste'
+      "
+      (click)="contrast.toggle()"
+    >
+      <tt-icon name="contrast" />
+      <span class="contrast__label">Contraste</span>
+      <span class="visually-hidden">Modo oscuro de alto contraste</span>
+    </button>
+
+    <a
+      class="header__cta btn-ink btn-ink--sm"
+      href="#contacto"
+      (click)="navigate($event, 'contacto')"
+    >
+      <span class="btn-ink__clip"><span class="btn-ink__text">Hablemos</span></span>
+    </a>
+
+    <button
+      #toggle
+      class="toggle"
+      type="button"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="mobile-menu"
+      (click)="toggleMenu()"
+    >
+      <span class="visually-hidden">{{ menuOpen() ? 'Cerrar menú' : 'Abrir menú' }}</span>
+      <span class="toggle__line toggle__line--top" aria-hidden="true"></span>
+      <span class="toggle__line toggle__line--bottom" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <span #progress class="progress" aria-hidden="true"></span>
+
+  <div
+    id="mobile-menu"
+    class="menu theme-dark"
+    [attr.aria-hidden]="!menuOpen()"
+    [attr.inert]="menuOpen() ? null : ''"
+  >
+    <nav #mobileNav class="menu__nav container" aria-label="Menú móvil">
+      <ol class="menu__list">
+        @for (item of items; track item.id; let i = $index) {
+          <li class="menu__item" [style.--i]="i">
+            <a
+              class="menu__link"
+              [class.is-active]="active() === item.id"
+              [href]="'#' + item.id"
+              (click)="navigate($event, item.id)"
+            >
+              <span class="menu__index t-label">0{{ i + 1 }}</span>
+              {{ item.label }}
+            </a>
+          </li>
+        }
+      </ol>
+      <div class="menu__foot">
+        <span class="t-label">{{ brand.tagline }}</span>
+        <span class="t-label">{{ brand.location }}</span>
+      </div>
+    </nav>
+  </div>
+</header>

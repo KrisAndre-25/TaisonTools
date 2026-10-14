@@ -1,0 +1,157 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+.process {
+  border-top: 1px solid var(--tt-border);
+}
+
+.process__layout {
+  display: grid;
+  gap: var(--tt-space-7);
+
+  @include bp.up(lg) {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  }
+}
+
+// Sticky counter (desktop only)
+.process__aside {
+  display: none;
+
+  @include bp.up(lg) {
+    display: block;
+    position: sticky;
+    top: calc(var(--tt-header-h) + 15vh);
+    align-self: start;
+  }
+}
+
+.counter {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: start;
+  align-items: end;
+  column-gap: var(--tt-space-3);
+
+  &__label {
+    grid-column: 1 / -1;
+    margin-bottom: var(--tt-space-2);
+  }
+
+  &__value {
+    display: block;
+    overflow: hidden;
+    font-size: clamp(6rem, 3rem + 7vw, 11rem);
+    font-weight: 600;
+    letter-spacing: -0.06em;
+    line-height: 0.85;
+    color: var(--tt-accent);
+  }
+
+  &__digits {
+    display: block;
+    animation: tt-line-rise 600ms var(--tt-ease-out) both;
+  }
+
+  &__total {
+    padding-bottom: 0.6rem;
+    color: var(--tt-fg);
+  }
+}
+
+.process__current {
+  margin-top: var(--tt-space-5);
+  color: var(--tt-muted);
+}
+
+// Track with progressive red rail
+.process__track {
+  position: relative;
+  padding-left: clamp(2rem, 1.25rem + 2vw, 3.5rem);
+}
+
+.process__rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 7px;
+  width: 1px;
+  background: var(--tt-border-strong);
+}
+
+.process__fill {
+  position: absolute;
+  inset: 0;
+  background: var(--tt-accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  will-change: transform;
+}
+
+.step {
+  position: relative;
+  padding-bottom: clamp(3rem, 2rem + 4vw, 6rem);
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  &__node {
+    position: absolute;
+    top: 0.35rem;
+    left: calc(-1 * clamp(2rem, 1.25rem + 2vw, 3.5rem));
+    width: 15px;
+    height: 15px;
+    border: 1px solid var(--tt-border-strong);
+    border-radius: 50%;
+    background: var(--tt-bg);
+    transition:
+      border-color var(--tt-dur-hover),
+      background var(--tt-dur-hover),
+      box-shadow var(--tt-dur-hover);
+
+    .is-past &,
+    .is-active & {
+      border-color: var(--tt-accent);
+      background: var(--tt-accent);
+    }
+
+    .is-active & {
+      background: var(--tt-fg);
+      box-shadow:
+        0 0 0 3px var(--tt-accent),
+        0 0 0 8px var(--tt-accent-soft);
+    }
+  }
+
+  &__body {
+    display: grid;
+    gap: var(--tt-space-3);
+    max-width: 38rem;
+    opacity: 0.4;
+    transition: opacity 500ms var(--tt-ease-out);
+
+    .is-active &,
+    .is-past & {
+      opacity: 1;
+    }
+  }
+
+  &__num {
+    color: var(--tt-subtle);
+
+    .is-active & {
+      color: var(--tt-accent);
+    }
+  }
+
+  &__deliverables {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--tt-space-2);
+    margin-top: var(--tt-space-2);
+  }
+}

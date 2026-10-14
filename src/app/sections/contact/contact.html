@@ -1,0 +1,139 @@
+<section
+  id="contacto"
+  class="section contact theme-dark has-pattern"
+  aria-labelledby="contacto-title"
+>
+  <div class="tt-pattern" aria-hidden="true" style="--pattern-at: 15% 20%"></div>
+  <div class="container">
+    <p class="contact__meta t-label" ttReveal="fade">
+      <span class="t-accent">07</span> <span class="contact__rule"></span> Contacto
+    </p>
+
+    <h2 id="contacto-title" class="contact__title">
+      <span class="contact__line" ttReveal="clip">¿Tienes una idea?</span>
+      <span class="contact__line contact__line--accent" ttReveal="clip" [revealDelay]="150">
+        Construyámosla<span class="t-accent">.</span>
+      </span>
+    </h2>
+
+    <div class="contact__layout">
+      <div class="contact__info" ttReveal="left">
+        <p class="t-lead">
+          Cuéntanos qué necesitas, aunque todavía sea una idea a medio definir. La primera
+          conversación sirve justamente para ordenarla.
+        </p>
+        <dl class="facts">
+          <div>
+            <dt class="t-label t-dim">Estudio</dt>
+            <dd>{{ brand.location }}</dd>
+          </div>
+          <div>
+            <dt class="t-label t-dim">Disciplinas</dt>
+            <dd>Software · Web · UX/UI · Automatización</dd>
+          </div>
+          <div>
+            <dt class="t-label t-dim">Equipo</dt>
+            <dd>1 desarrollador <span class="t-accent">×</span> 1 diseñador</dd>
+          </div>
+        </dl>
+      </div>
+
+      @if (status() !== 'ready') {
+        <form class="form" [formGroup]="form" (ngSubmit)="submit()" novalidate ttReveal="right">
+          <div class="field" [class.has-error]="showError('name')">
+            <label class="field__label t-label" for="contact-name"
+              >Nombre <span class="field__req" aria-hidden="true">*</span></label
+            >
+            <input
+              id="contact-name"
+              class="field__input"
+              type="text"
+              formControlName="name"
+              required
+              autocomplete="name"
+              [attr.aria-invalid]="showError('name')"
+              [attr.aria-describedby]="showError('name') ? 'contact-name-error' : null"
+            />
+            @if (showError('name')) {
+              <p id="contact-name-error" class="field__error">
+                <span class="field__error-icon" aria-hidden="true">!</span>Escribe tu nombre.
+              </p>
+            }
+          </div>
+
+          <div class="field" [class.has-error]="showError('email')">
+            <label class="field__label t-label" for="contact-email"
+              >Email <span class="field__req" aria-hidden="true">*</span></label
+            >
+            <input
+              id="contact-email"
+              class="field__input"
+              type="email"
+              formControlName="email"
+              required
+              autocomplete="email"
+              inputmode="email"
+              [attr.aria-invalid]="showError('email')"
+              [attr.aria-describedby]="showError('email') ? 'contact-email-error' : null"
+            />
+            @if (showError('email')) {
+              <p id="contact-email-error" class="field__error">
+                <span class="field__error-icon" aria-hidden="true">!</span>
+                Necesitamos un email válido para responderte.
+              </p>
+            }
+          </div>
+
+          <fieldset class="field field--chips">
+            <legend class="field__label t-label">
+              Tipo de proyecto <span class="field__req" aria-hidden="true">*</span>
+            </legend>
+            <div class="chips">
+              @for (type of projectTypes; track type) {
+                <label class="chip">
+                  <input type="radio" formControlName="type" [value]="type" />
+                  <span>{{ type }}</span>
+                </label>
+              }
+            </div>
+          </fieldset>
+
+          <div class="field" [class.has-error]="showError('message')">
+            <label class="field__label t-label" for="contact-message"
+              >Tu idea <span class="field__req" aria-hidden="true">*</span></label
+            >
+            <textarea
+              id="contact-message"
+              class="field__input field__input--area"
+              rows="4"
+              formControlName="message"
+              required
+              [attr.aria-invalid]="showError('message')"
+              [attr.aria-describedby]="showError('message') ? 'contact-message-error' : null"
+            ></textarea>
+            @if (showError('message')) {
+              <p id="contact-message-error" class="field__error">
+                <span class="field__error-icon" aria-hidden="true">!</span>
+                Cuéntanos un poco más (mínimo 20 caracteres).
+              </p>
+            }
+          </div>
+
+          <button class="btn-ink form__submit" type="submit">
+            <span class="btn-ink__clip"><span class="btn-ink__text">Enviar</span></span>
+          </button>
+        </form>
+      } @else {
+        <div class="sent" role="status">
+          <span class="sent__mark" aria-hidden="true">✓</span>
+          <h3 class="t-h4">Gracias, {{ form.controls.name.value }}.</h3>
+          <p class="t-body">
+            Tu mensaje está listo, pero el envío en línea todavía no está habilitado en este sitio.
+            Pronto publicaremos un canal de contacto directo.
+          </p>
+          <button class="link" type="button" (click)="reset()">Volver al formulario</button>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,211 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+.stack {
+  border-top: 1px solid var(--tt-border);
+}
+
+.stack__layout {
+  display: grid;
+  gap: var(--tt-space-6);
+
+  @include bp.up(lg) {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: var(--tt-space-7);
+  }
+}
+
+// Filters: horizontal scroller on mobile, vertical index on desktop
+.filters {
+  display: flex;
+  gap: var(--tt-space-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-inline: calc(-1 * var(--tt-gutter));
+  padding-inline: var(--tt-gutter);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include bp.up(lg) {
+    flex-direction: column;
+    gap: 0;
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+    align-self: start;
+    position: sticky;
+    top: calc(var(--tt-header-h) + 2rem);
+    border-top: 1px solid var(--tt-border);
+  }
+
+  &__summary {
+    display: none;
+
+    @include bp.up(lg) {
+      display: block;
+      margin-top: var(--tt-space-5);
+    }
+  }
+}
+
+.filter {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--tt-space-3);
+  flex: none;
+  min-height: 48px;
+  padding: 0 1rem;
+  border: 1px solid var(--tt-border);
+  border-radius: var(--tt-radius-pill);
+  color: var(--tt-muted);
+  font-size: 0.95rem;
+  transition:
+    color var(--tt-dur-micro),
+    border-color var(--tt-dur-micro),
+    padding var(--tt-dur-hover) var(--tt-ease-out);
+
+  @include bp.up(lg) {
+    min-height: 56px;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid var(--tt-border);
+    border-radius: 0;
+    font-size: 1.15rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 10px;
+      height: 1px;
+      background: var(--tt-accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--tt-dur-hover) var(--tt-ease-out);
+    }
+
+    &:hover,
+    &.is-active {
+      padding-left: 1.25rem;
+
+      &::before {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  &__count {
+    font-size: 0.8125rem;
+    color: var(--tt-subtle);
+  }
+
+  &:hover {
+    color: var(--tt-fg);
+  }
+
+  &.is-active {
+    color: var(--tt-fg);
+    border-color: var(--tt-accent);
+
+    .filter__count {
+      color: var(--tt-accent);
+    }
+  }
+}
+
+// Tiles
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--tt-border);
+  border-left: 1px solid var(--tt-border);
+
+  @include bp.up(sm) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include bp.up(xl) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.tiles__cell {
+  border-right: 1px solid var(--tt-border);
+  border-bottom: 1px solid var(--tt-border);
+  background: var(--tt-bg);
+}
+
+.tile {
+  position: relative;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  gap: var(--tt-space-1);
+  min-height: clamp(9rem, 7rem + 5vw, 12rem);
+  padding: var(--tt-space-5);
+  background: var(--tt-bg);
+  transition:
+    background var(--tt-dur-hover) var(--tt-ease-out),
+    opacity var(--tt-dur-hover) var(--tt-ease-out);
+
+  // Red corner marker
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 14px 14px 0;
+    border-color: transparent var(--tt-accent) transparent transparent;
+    opacity: 0;
+    transition: opacity var(--tt-dur-micro);
+  }
+
+  &:hover {
+    background: var(--tt-surface-2);
+
+    &::after {
+      opacity: 1;
+    }
+
+    .tile__short {
+      color: var(--tt-fg);
+      transform: translateY(-3px);
+    }
+  }
+
+  &.is-dim {
+    opacity: 0.22;
+  }
+
+  &__short {
+    font-family: var(--tt-font-mono);
+    font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    color: var(--tt-subtle);
+    transition:
+      color var(--tt-dur-hover),
+      transform var(--tt-dur-hover) var(--tt-ease-out);
+  }
+
+  &__name {
+    color: var(--tt-fg);
+    font-weight: 500;
+  }
+
+  &__cat {
+    font-size: 0.8125rem;
+    color: var(--tt-subtle);
+  }
+}

@@ -1,0 +1,243 @@
+.btn {
+  --btn-bg: transparent;
+  --btn-fg: var(--tt-fg);
+  --btn-border: var(--tt-border-strong);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tt-space-3);
+  min-height: 48px;
+  padding: 0 1.5rem;
+  border: 1px solid var(--btn-border);
+  border-radius: var(--tt-radius-pill);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--tt-font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform var(--tt-dur-hover) var(--tt-ease-out),
+    border-color var(--tt-dur-hover) var(--tt-ease-out),
+    color var(--tt-dur-hover) var(--tt-ease-out);
+
+  // Fill that wipes in from the bottom on hover
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--btn-fill, var(--tt-fg));
+    transform: translateY(101%);
+    transition: transform var(--tt-dur-hover) var(--tt-ease-out);
+  }
+
+  &__icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    transition: transform var(--tt-dur-hover) var(--tt-ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-2px);
+      color: var(--btn-fg-hover, var(--tt-bg));
+      border-color: var(--btn-fill, var(--tt-fg));
+
+      &::before {
+        transform: translateY(0);
+      }
+
+      .btn__icon {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  &--ghost {
+    --btn-fill: var(--tt-fg);
+  }
+
+  &--block {
+    width: 100%;
+  }
+}
+
+// Inline text link with animated underline
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tt-space-2);
+  color: var(--tt-fg);
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background: var(--tt-accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--tt-dur-hover) var(--tt-ease-out);
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+// Small technical tag
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid var(--tt-border);
+  border-radius: var(--tt-radius-pill);
+  font-family: var(--tt-font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  color: var(--tt-muted);
+  white-space: nowrap;
+}
+
+.dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tt-accent);
+  flex: none;
+}
+
+// Solid ink button: uppercase, heavy, with two skewed panels that sweep across on hover
+// while the label drops out and back in. The label is white with mix-blend-mode:
+// difference, so it always inverts against whatever is under it (fill or sweep).
+.btn-ink {
+  --ink-bg: var(--tt-fg);
+  --ink-sweep: var(--tt-bg);
+  --skew: 0.2;
+
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.8rem 2.6rem;
+  overflow: hidden;
+  border: 2px solid var(--ink-bg);
+  border-radius: 99rem;
+  background: var(--ink-bg);
+  color: #fff;
+  font-family: var(--tt-font-sans);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  // Clips the skewed panels to the pill in Safari.
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  transition: transform var(--tt-dur-micro) var(--tt-ease-out);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -104%;
+    left: calc(-50% - 50% * var(--skew));
+    display: block;
+    width: 100%;
+    height: 102%;
+    background: var(--ink-sweep);
+    pointer-events: none;
+    transform: skew(calc(150deg * var(--skew))) translateY(var(--progress, 0));
+    transition: transform 0.2s ease;
+  }
+
+  &::after {
+    --progress: 0%;
+    top: 102%;
+    left: calc(50% + 50% * var(--skew));
+    z-index: -1;
+  }
+
+  &__clip {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    mix-blend-mode: difference;
+  }
+
+  &__text {
+    position: relative;
+    display: block;
+  }
+
+  &:hover,
+  &:focus-visible {
+    &::before {
+      --progress: 100%;
+    }
+
+    &::after {
+      --progress: -102%;
+    }
+
+    .btn-ink__text {
+      animation: ink-text-swap 0.3s forwards;
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &--sm {
+    min-height: 48px;
+    padding: 0.45rem 1.6rem;
+    font-size: 0.8125rem;
+  }
+}
+
+@keyframes ink-text-swap {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(80%);
+  }
+  51% {
+    transform: translateY(-80%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+// On phones, buttons take the full width of their container
+@media (max-width: 479.98px) {
+  .btn,
+  .btn-ink {
+    width: 100%;
+  }
+}

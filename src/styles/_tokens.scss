@@ -1,0 +1,183 @@
+:root {
+  // Color — black and white only. The accent is ink: emphasis comes from contrast, not hue.
+  --tt-bg: #fafafa;
+  --tt-bg-rgb: 250 250 250;
+  --tt-bg-2: #efefef; // alternate section ground
+  --tt-surface: #f5f5f5;
+  --tt-surface-2: #ececec;
+  --tt-surface-3: #dcdcdc;
+
+  --tt-accent: #0a0a0a;
+  --tt-accent-strong: #0a0a0a;
+  --tt-accent-rgb: 10 10 10;
+  --tt-accent-soft: rgb(var(--tt-accent-rgb) / 0.1);
+  --tt-on-accent: #ffffff; // text placed on an accent fill
+
+  --tt-fg: #0a0a0a; // headings, strongest ink
+  --tt-ink-rgb: 10 10 10; // lines and grids are drawn in ink at low alpha
+  --tt-text: #1a1a1a;
+  --tt-muted: #555555;
+  --tt-subtle: #6b6b6b; // ≥4.5:1 on #fafafa and #efefef
+
+  --tt-border: rgb(var(--tt-ink-rgb) / 0.12);
+  --tt-border-strong: rgb(var(--tt-ink-rgb) / 0.24);
+  --tt-input-border: #767676; // ≥3:1 against the ground so fields are visible
+
+  // Isometric cube pattern used behind the hero and contact (see .tt-pattern)
+  --tt-pattern-c1: #f2f2f2;
+  --tt-pattern-c2: #cdcbcc;
+  --tt-pattern-c3: #999999;
+
+  // Typography — two families: Inter Tight (display/body) + JetBrains Mono (technical labels)
+  --tt-font-sans: 'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --tt-font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --tt-fs-label: 0.8125rem; // 13px floor for all text
+  --tt-fs-sm: 0.875rem;
+  --tt-fs-body: 1rem;
+  --tt-fs-lead: clamp(1.05rem, 0.98rem + 0.35vw, 1.25rem);
+  --tt-fs-h4: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+  --tt-fs-h3: clamp(1.6rem, 1.3rem + 1.2vw, 2.4rem);
+  --tt-fs-h2: clamp(2.3rem, 1.6rem + 3vw, 4.6rem);
+  --tt-fs-display: clamp(2.9rem, 1.6rem + 6vw, 8rem);
+
+  // Spacing scale (4px base)
+  --tt-space-1: 0.25rem;
+  --tt-space-2: 0.5rem;
+  --tt-space-3: 0.75rem;
+  --tt-space-4: 1rem;
+  --tt-space-5: 1.5rem;
+  --tt-space-6: 2rem;
+  --tt-space-7: 3rem;
+  --tt-space-8: 4rem;
+  --tt-space-9: 6rem;
+  --tt-section-y: clamp(5rem, 3rem + 8vw, 10rem);
+
+  // Layout
+  --tt-container: 1240px;
+  --tt-gutter: clamp(1.25rem, 0.75rem + 2.5vw, 3rem);
+  --tt-header-h: 72px;
+
+  // Shape
+  --tt-radius-xs: 4px;
+  --tt-radius-sm: 8px;
+  --tt-radius-md: 14px;
+  --tt-radius-lg: 24px;
+  --tt-radius-pill: 999px;
+
+  // Elevation (soft on white)
+  --tt-shadow-sm: 0 1px 2px rgb(var(--tt-ink-rgb) / 0.04), 0 8px 24px rgb(var(--tt-ink-rgb) / 0.05);
+  --tt-shadow-md:
+    0 1px 2px rgb(var(--tt-ink-rgb) / 0.05), 0 24px 60px rgb(var(--tt-ink-rgb) / 0.08);
+
+  // Motion
+  --tt-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --tt-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --tt-dur-micro: 180ms;
+  --tt-dur-hover: 260ms;
+  --tt-dur-enter: 750ms;
+  --tt-dur-major: 950ms;
+
+  // Layers
+  --tt-z-base: 1;
+  --tt-z-raised: 10;
+  --tt-z-header: 100;
+  --tt-z-overlay: 200;
+}
+
+// Inverted scope: put .theme-dark on a section to render it black with white ink.
+// Tokens that are derived from other tokens are restated, because custom properties
+// resolve where they are declared.
+.theme-dark {
+  --tt-bg: #0a0a0a;
+  --tt-bg-rgb: 10 10 10;
+  --tt-bg-2: #0a0a0a;
+  --tt-surface: #121212;
+  --tt-surface-2: #1a1a1a;
+  --tt-surface-3: #2a2a2a;
+
+  --tt-accent: #ffffff;
+  --tt-accent-strong: #ffffff;
+  --tt-accent-rgb: 255 255 255;
+  --tt-accent-soft: rgb(255 255 255 / 0.14);
+  --tt-on-accent: #0a0a0a;
+
+  --tt-fg: #ffffff;
+  --tt-ink-rgb: 255 255 255;
+  --tt-text: #ececec;
+  --tt-muted: #a6a6a6;
+  --tt-subtle: #8c8c8c;
+
+  --tt-border: rgb(255 255 255 / 0.12);
+  --tt-border-strong: rgb(255 255 255 / 0.26);
+  --tt-input-border: #6b6b6b;
+
+  --tt-pattern-c1: #0f0f0f;
+  --tt-pattern-c2: #1c1c1c;
+  --tt-pattern-c3: #2e2e2e;
+
+  --tt-shadow-sm: 0 8px 24px rgb(0 0 0 / 0.4);
+  --tt-shadow-md: 0 24px 60px rgb(0 0 0 / 0.5);
+
+  background: var(--tt-bg);
+  color: var(--tt-text);
+  color-scheme: dark;
+}
+
+// Contrast mode (header toggle, or OS "increase contrast"): the white page turns black.
+// White ink on black, lighter greys for legibility, stronger lines. Sections that are
+// already dark (.theme-dark) lift to a dark grey so the alternating rhythm survives.
+:root[data-contrast='high'] {
+  --tt-bg: #000000;
+  --tt-bg-rgb: 0 0 0;
+  --tt-bg-2: #000000;
+  --tt-surface: #0d0d0d;
+  --tt-surface-2: #161616;
+  --tt-surface-3: #2a2a2a;
+
+  --tt-accent: #ffffff;
+  --tt-accent-strong: #ffffff;
+  --tt-accent-rgb: 255 255 255;
+  --tt-accent-soft: rgb(255 255 255 / 0.16);
+  --tt-on-accent: #000000;
+
+  --tt-fg: #ffffff;
+  --tt-ink-rgb: 255 255 255;
+  --tt-text: #ffffff;
+  --tt-muted: #d6d6d6;
+  --tt-subtle: #b8b8b8;
+
+  --tt-border: rgb(255 255 255 / 0.24);
+  --tt-border-strong: rgb(255 255 255 / 0.5);
+  --tt-input-border: #8a8a8a;
+
+  --tt-pattern-c1: #050505;
+  --tt-pattern-c2: #151515;
+  --tt-pattern-c3: #2a2a2a;
+
+  --tt-shadow-sm: 0 8px 24px rgb(0 0 0 / 0.6);
+  --tt-shadow-md: 0 0 0 1px rgb(255 255 255 / 0.06), 0 24px 60px rgb(0 0 0 / 0.7);
+
+  color-scheme: dark;
+}
+
+:root[data-contrast='high'] .theme-dark {
+  --tt-bg: #141414;
+  --tt-bg-rgb: 20 20 20;
+  --tt-bg-2: #141414;
+  --tt-surface: #1c1c1c;
+  --tt-surface-2: #242424;
+  --tt-surface-3: #333333;
+
+  --tt-text: #ffffff;
+  --tt-muted: #dcdcdc;
+  --tt-subtle: #c2c2c2;
+
+  --tt-border: rgb(255 255 255 / 0.26);
+  --tt-border-strong: rgb(255 255 255 / 0.55);
+  --tt-input-border: #8f8f8f;
+
+  --tt-pattern-c1: #121212;
+  --tt-pattern-c2: #222222;
+  --tt-pattern-c3: #363636;
+}
