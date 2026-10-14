@@ -20,6 +20,14 @@
   letter-spacing: -0.03em;
 }
 
+// Section titles are set in capitals. Caps need a little more air than lowercase,
+// so their tracking is opened up from the tight display values above.
+.t-display,
+.t-h2 {
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+}
+
 .t-h3 {
   font-size: var(--tt-fs-h3);
   line-height: 1.05;
