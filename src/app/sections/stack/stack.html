@@ -1,0 +1,52 @@
+<section class="section stack" aria-labelledby="stack-title">
+  <div class="container">
+    <tt-section-head
+      index="05"
+      label="Tech stack"
+      titleId="stack-title"
+      lead="Herramientas que usamos a diario, elegidas según lo que cada proyecto necesita y no por moda."
+    >
+      Con qué <span class="t-dim">trabajamos</span>
+    </tt-section-head>
+
+    <div class="stack__layout">
+      <div class="filters" role="group" aria-label="Filtrar por área" ttReveal="left">
+        <button
+          type="button"
+          class="filter"
+          [class.is-active]="selected() === null"
+          [attr.aria-pressed]="selected() === null"
+          (click)="select(null)"
+        >
+          <span>Todo</span>
+          <span class="filter__count t-mono">{{ technologies.length }}</span>
+        </button>
+        @for (c of categories; track c.name) {
+          <button
+            type="button"
+            class="filter"
+            [class.is-active]="selected() === c.name"
+            [attr.aria-pressed]="selected() === c.name"
+            (click)="select(c.name)"
+          >
+            <span>{{ c.name }}</span>
+            <span class="filter__count t-mono">0{{ c.count }}</span>
+          </button>
+        }
+        <p class="filters__summary t-label" aria-live="polite">{{ summary() }}</p>
+      </div>
+
+      <ul class="tiles">
+        @for (tech of technologies; track tech.name; let i = $index) {
+          <li class="tiles__cell" ttReveal="fade" [revealDelay]="i * 40">
+            <div class="tile" [class.is-dim]="selected() !== null && selected() !== tech.category">
+              <span class="tile__short">{{ tech.short }}</span>
+              <span class="tile__name">{{ tech.name }}</span>
+              <span class="tile__cat t-label">{{ tech.category }}</span>
+            </div>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>

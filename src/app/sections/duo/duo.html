@@ -1,0 +1,58 @@
+<section class="duo section" aria-labelledby="duo-title">
+  <div class="container">
+    <p class="duo__meta t-label" ttReveal="fade">
+      <span class="t-accent">02</span> <span class="duo__rule"></span> Cómo pensamos
+    </p>
+
+    <h2 id="duo-title" class="duo__title" ttReveal="clip">
+      <span>Engineering</span>
+      <span class="duo__x" aria-label="por">×</span>
+      <span>Design</span>
+    </h2>
+    <p class="duo__intro t-lead" ttReveal [revealDelay]="100">
+      No separamos diseño y desarrollo en etapas que se entregan de un lado a otro. Las decisiones
+      se toman entre ambos, desde la primera conversación.
+    </p>
+
+    <div class="duo__split">
+      @for (d of disciplines; track d.key; let i = $index) {
+        <article class="panel" [class]="'panel--' + d.key" [ttReveal]="i === 0 ? 'left' : 'right'">
+          <header class="panel__head">
+            <span class="t-label">{{ d.label }}</span>
+            <span class="t-label t-dim">0{{ i + 1 }}</span>
+          </header>
+          <p class="panel__statement t-h3">{{ d.statement }}</p>
+          <ul class="panel__practices">
+            @for (p of d.practices; track p) {
+              <li>{{ p }}</li>
+            }
+          </ul>
+          <footer class="panel__foot">
+            <div>
+              <p class="panel__person">{{ d.person }}</p>
+              <p class="t-label t-dim">{{ d.role }}</p>
+            </div>
+            <code class="panel__note t-mono">{{ d.note }}</code>
+          </footer>
+        </article>
+      }
+
+      <div class="duo__axis" aria-hidden="true" ttReveal="fade" [revealDelay]="250">
+        <span class="duo__axis-line"></span>
+        <span class="duo__axis-node">×</span>
+      </div>
+    </div>
+
+    <div class="overlap">
+      <p class="overlap__label t-label" ttReveal="fade">Donde se cruzan</p>
+      <ol class="overlap__list">
+        @for (item of overlap; track item; let i = $index) {
+          <li class="overlap__item" ttReveal [revealDelay]="i * 90">
+            <span class="t-label t-accent">∩ 0{{ i + 1 }}</span>
+            <p>{{ item }}</p>
+          </li>
+        }
+      </ol>
+    </div>
+  </div>
+</section>

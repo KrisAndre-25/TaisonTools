@@ -1,0 +1,96 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.footer {
+  border-top: 1px solid var(--tt-border);
+  padding-top: var(--tt-space-8);
+  padding-bottom: var(--tt-space-5);
+  background: var(--tt-bg);
+
+  &__top {
+    display: grid;
+    gap: var(--tt-space-7);
+    padding-bottom: var(--tt-space-8);
+
+    @include bp.up(md) {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+
+  &__brand {
+    display: grid;
+    gap: var(--tt-space-3);
+    align-content: start;
+  }
+
+  &__word {
+    font-size: clamp(2rem, 1.2rem + 3.6vw, 4rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--tt-white);
+
+    span {
+      color: var(--tt-subtle);
+    }
+  }
+
+  &__nav,
+  &__place {
+    display: grid;
+    gap: var(--tt-space-3);
+    align-content: start;
+
+    ul {
+      display: grid;
+      gap: var(--tt-space-2);
+    }
+  }
+
+  &__coords {
+    font-size: var(--tt-fs-sm);
+  }
+
+  &__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--tt-space-3) var(--tt-space-5);
+    padding-top: var(--tt-space-5);
+    border-top: 1px solid var(--tt-border);
+  }
+
+  &__built {
+    @include bp.down(md) {
+      order: 3;
+      width: 100%;
+    }
+  }
+
+  &__top-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tt-space-2);
+    min-height: 44px;
+    color: var(--tt-white);
+    transition: color var(--tt-dur-micro);
+
+    tt-icon {
+      transition: transform var(--tt-dur-hover) var(--tt-ease-out);
+    }
+
+    &:hover {
+      color: var(--tt-red-bright);
+
+      tt-icon {
+        transform: translateY(-3px);
+      }
+    }
+  }
+}

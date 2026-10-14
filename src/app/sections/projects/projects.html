@@ -1,0 +1,62 @@
+<section id="proyectos" class="section projects" aria-labelledby="proyectos-title">
+  <div class="container">
+    <tt-section-head
+      index="04"
+      label="Proyectos"
+      titleId="proyectos-title"
+      lead="Exploraciones conceptuales que muestran cómo abordamos distintos tipos de producto. Los casos reales se irán publicando aquí."
+    >
+      Qué podemos <span class="t-dim">construir</span>
+    </tt-section-head>
+
+    <div class="projects__grid">
+      @for (project of projects; track project.number; let i = $index) {
+        <article
+          class="project"
+          [class]="'project--' + (i + 1)"
+          ttReveal
+          [revealDelay]="i % 2 ? 120 : 0"
+        >
+          <div class="project__media">
+            @if (project.image) {
+              <img [src]="project.image" alt="" loading="lazy" decoding="async" />
+            } @else {
+              <tt-project-visual [variant]="project.visual" />
+            }
+            <span class="project__badge t-label">Concepto</span>
+          </div>
+
+          <div class="project__info">
+            <div class="project__top">
+              <span class="t-label t-accent">Project {{ project.number }}</span>
+              <span class="t-label t-dim">{{ project.category }}</span>
+            </div>
+            <h3 class="project__name t-h3">{{ project.name }}</h3>
+            <p class="project__desc t-body">{{ project.description }}</p>
+            <ul class="project__tech" aria-label="Tecnologías">
+              @for (tech of project.technologies; track tech) {
+                <li class="tag">{{ tech }}</li>
+              }
+            </ul>
+            @if (project.url) {
+              <a class="link project__link" [href]="project.url">
+                Ver proyecto <tt-icon name="arrow-up-right" />
+              </a>
+            } @else {
+              <p class="project__soon t-label t-dim">Caso de estudio en preparación</p>
+            }
+          </div>
+        </article>
+      }
+
+      <a class="slot" href="#contacto" (click)="navigate($event, 'contacto')" ttReveal>
+        <span class="t-label t-dim">Project 0{{ projects.length + 1 }}</span>
+        <span class="slot__title t-h3">Este espacio es para el tuyo.</span>
+        <span class="slot__cta">
+          Cuéntanos tu idea
+          <span class="slot__arrow"><tt-icon name="arrow-right" /></span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>

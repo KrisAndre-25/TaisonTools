@@ -1,0 +1,58 @@
+<section id="servicios" class="section" aria-labelledby="servicios-title">
+  <div class="container">
+    <tt-section-head
+      index="01"
+      label="Servicios"
+      titleId="servicios-title"
+      lead="Trabajamos en la intersección entre ingeniería y diseño. Cada servicio combina ambas disciplinas desde el primer día."
+    >
+      Qué <span class="t-dim">construimos</span>
+    </tt-section-head>
+
+    <ol class="services">
+      @for (service of services; track service.number; let i = $index) {
+        <li
+          class="service"
+          [class.is-open]="open() === i"
+          ttReveal
+          [revealDelay]="i * 70"
+          (pointerenter)="preview($event, i)"
+        >
+          <h3 class="service__heading">
+            <button
+              type="button"
+              class="service__trigger"
+              [id]="'service-' + service.number"
+              [attr.aria-expanded]="open() === i"
+              [attr.aria-controls]="'service-panel-' + service.number"
+              (click)="toggle(i)"
+            >
+              <span class="service__num t-label">{{ service.number }}</span>
+              <span class="service__title">{{ service.title }}</span>
+              <span class="service__summary">{{ service.summary }}</span>
+              <span class="service__arrow" aria-hidden="true">
+                <tt-icon name="arrow-up-right" />
+              </span>
+            </button>
+          </h3>
+
+          <div
+            class="service__panel"
+            [id]="'service-panel-' + service.number"
+            role="region"
+            [attr.aria-labelledby]="'service-' + service.number"
+          >
+            <div class="service__panel-inner">
+              <p class="service__detail">{{ service.detail }}</p>
+              <ul class="service__tags" aria-label="Incluye">
+                @for (item of service.includes; track item) {
+                  <li class="tag">{{ item }}</li>
+                }
+              </ul>
+            </div>
+          </div>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

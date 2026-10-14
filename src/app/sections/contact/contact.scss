@@ -1,0 +1,221 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+.contact {
+  border-top: 1px solid var(--tt-border);
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 0%, rgba(225, 6, 0, 0.08), transparent 70%),
+    var(--tt-bg-2);
+}
+
+.contact__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--tt-space-3);
+}
+
+.contact__rule {
+  width: 2.5rem;
+  height: 1px;
+  background: var(--tt-border-strong);
+}
+
+.contact__title {
+  display: grid;
+  margin-top: var(--tt-space-5);
+  font-size: clamp(2.2rem, 0.8rem + 7vw, 8.5rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--tt-muted);
+}
+
+.contact__line--accent {
+  color: var(--tt-white);
+}
+
+.contact__layout {
+  display: grid;
+  gap: var(--tt-space-8);
+  margin-top: clamp(3rem, 2rem + 4vw, 6rem);
+
+  @include bp.up(lg) {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--tt-space-9);
+  }
+}
+
+.contact__info {
+  display: grid;
+  align-content: start;
+  gap: var(--tt-space-7);
+}
+
+.facts {
+  display: grid;
+  border-top: 1px solid var(--tt-border);
+
+  > div {
+    display: grid;
+    gap: var(--tt-space-1);
+    padding: var(--tt-space-4) 0;
+    border-bottom: 1px solid var(--tt-border);
+  }
+
+  dd {
+    color: var(--tt-white);
+  }
+}
+
+// ------------------------------------------------------------------ form
+.form {
+  display: grid;
+  gap: var(--tt-space-6);
+  padding: clamp(1.5rem, 1rem + 2vw, 2.75rem);
+  border: 1px solid var(--tt-border);
+  border-radius: var(--tt-radius-lg);
+  background: var(--tt-surface);
+}
+
+.field {
+  position: relative;
+  display: grid;
+  gap: var(--tt-space-2);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+
+  &__label {
+    padding: 0;
+  }
+
+  &__input {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.75rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--tt-border-strong);
+    border-radius: 0;
+    background: transparent;
+    color: var(--tt-white);
+    font-size: 1.05rem;
+    transition: border-color var(--tt-dur-micro);
+
+    &:hover {
+      border-color: var(--tt-muted);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--tt-red);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 1px 0 var(--tt-red);
+    }
+
+    &--area {
+      resize: vertical;
+      min-height: 120px;
+    }
+  }
+
+  &.has-error .field__input {
+    border-color: var(--tt-red-bright);
+  }
+
+  &__error {
+    color: var(--tt-red-bright);
+    font-size: var(--tt-fs-sm);
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--tt-space-2);
+  margin-top: var(--tt-space-2);
+}
+
+.chip {
+  position: relative;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    cursor: pointer;
+  }
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0 1rem;
+    border: 1px solid var(--tt-border-strong);
+    border-radius: var(--tt-radius-pill);
+    color: var(--tt-muted);
+    font-size: 0.9rem;
+    transition:
+      color var(--tt-dur-micro),
+      background var(--tt-dur-micro),
+      border-color var(--tt-dur-micro);
+  }
+
+  &:hover span {
+    color: var(--tt-white);
+    border-color: var(--tt-muted);
+  }
+
+  input:checked + span {
+    background: var(--tt-white);
+    border-color: var(--tt-white);
+    color: var(--tt-bg);
+  }
+
+  input:focus-visible + span {
+    outline: 2px solid var(--tt-red-bright);
+    outline-offset: 3px;
+  }
+}
+
+.form__submit {
+  justify-self: start;
+
+  @include bp.down(sm) {
+    width: 100%;
+  }
+}
+
+// ------------------------------------------------------------------ confirmation
+.sent {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: var(--tt-space-4);
+  padding: clamp(2rem, 1rem + 3vw, 3.5rem);
+  border: 1px solid var(--tt-border);
+  border-radius: var(--tt-radius-lg);
+  background: var(--tt-surface);
+  animation: tt-enter-up 600ms var(--tt-ease-out) both;
+
+  &__mark {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--tt-red);
+    color: var(--tt-white);
+  }
+
+  p {
+    max-width: 44ch;
+  }
+}

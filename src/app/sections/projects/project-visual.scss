@@ -1,0 +1,242 @@
+:host {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 8%;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(225, 6, 0, 0.12), transparent 50%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 40px 40px,
+    var(--tt-surface);
+}
+
+// ------------------------------------------------------------------ web
+.browser {
+  width: 100%;
+  max-width: 560px;
+  border: 1px solid var(--tt-border-strong);
+  border-radius: 10px;
+  background: var(--tt-bg);
+  box-shadow: var(--tt-shadow-md);
+  overflow: hidden;
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--tt-border);
+
+    i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--tt-surface-3);
+    }
+  }
+
+  &__url {
+    flex: 1;
+    max-width: 45%;
+    height: 8px;
+    margin-left: 10px;
+    border-radius: 4px;
+    background: var(--tt-surface-2);
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: 18% 1fr;
+    min-height: 0;
+  }
+
+  &__side {
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    padding: 14px 10px;
+    border-right: 1px solid var(--tt-border);
+
+    span {
+      height: 7px;
+      border-radius: 3px;
+      background: var(--tt-surface-3);
+    }
+
+    .is-on {
+      background: var(--tt-red);
+    }
+  }
+
+  &__main {
+    padding: 14px;
+  }
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+
+    span {
+      width: 38%;
+      height: 10px;
+      border-radius: 3px;
+      background: var(--tt-surface-3);
+    }
+
+    b {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: var(--tt-red);
+      color: var(--tt-white);
+      font-size: 0.55rem;
+      font-weight: 500;
+    }
+  }
+}
+
+.cal {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+
+  span {
+    aspect-ratio: 1.4;
+    border-radius: 3px;
+    background: var(--tt-surface-2);
+    border: 1px solid var(--tt-border);
+  }
+
+  .is-booked {
+    background: var(--tt-surface-3);
+  }
+
+  .is-today {
+    border-color: var(--tt-red);
+    background: rgba(225, 6, 0, 0.2);
+  }
+}
+
+// ------------------------------------------------------------------ mobile
+.phone {
+  display: grid;
+  gap: 14px;
+  width: min(230px, 70%);
+  padding: 30px 18px 18px;
+  border: 1px solid var(--tt-border-strong);
+  border-radius: 28px;
+  background: var(--tt-bg);
+  box-shadow: var(--tt-shadow-md);
+  position: relative;
+
+  &__notch {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 60px;
+    height: 6px;
+    translate: -50% 0;
+    border-radius: 3px;
+    background: var(--tt-surface-3);
+  }
+
+  &__title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--tt-white);
+  }
+
+  &__cta {
+    padding: 9px;
+    border-radius: 999px;
+    background: var(--tt-red);
+    color: var(--tt-white);
+    font-size: 0.7rem;
+    text-align: center;
+  }
+}
+
+.timeline {
+  display: grid;
+  gap: 12px;
+
+  li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.7rem;
+    color: var(--tt-subtle);
+
+    i {
+      font-style: normal;
+    }
+
+    span {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      border: 1px solid var(--tt-border-strong);
+    }
+  }
+
+  .is-done {
+    color: var(--tt-muted);
+
+    span {
+      background: var(--tt-muted);
+      border-color: var(--tt-muted);
+    }
+  }
+
+  .is-now {
+    color: var(--tt-white);
+
+    span {
+      background: var(--tt-red);
+      border-color: var(--tt-red);
+      box-shadow: 0 0 0 4px var(--tt-red-soft);
+    }
+  }
+}
+
+// ------------------------------------------------------------------ flow
+.flow {
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+
+  &__links path {
+    stroke: rgba(255, 255, 255, 0.22);
+    stroke-width: 1.2;
+  }
+
+  &__hot,
+  &__links .flow__hot {
+    stroke: var(--tt-red);
+    stroke-width: 1.6;
+  }
+
+  &__nodes rect {
+    fill: var(--tt-bg);
+    stroke: rgba(255, 255, 255, 0.28);
+  }
+
+  &__core {
+    stroke: var(--tt-red) !important;
+  }
+
+  &__out {
+    fill: var(--tt-red) !important;
+    stroke: var(--tt-red) !important;
+  }
+
+  &__text text {
+    fill: var(--tt-muted);
+    font-family: var(--tt-font-mono);
+    font-size: 11px;
+    text-anchor: middle;
+  }
+}

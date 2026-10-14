@@ -1,0 +1,75 @@
+:root {
+  // Color — black base, red as accent only
+  --tt-bg: #050505;
+  --tt-bg-2: #080808;
+  --tt-surface: #0d0d0d;
+  --tt-surface-2: #141414;
+  --tt-surface-3: #1c1c1c;
+
+  --tt-red: #e10600;
+  --tt-red-bright: #ff1a1a;
+  --tt-red-soft: rgba(225, 6, 0, 0.14);
+
+  --tt-white: #ffffff;
+  --tt-text: #e5e5e5;
+  --tt-muted: #a0a0a0;
+  --tt-subtle: #666666;
+
+  --tt-border: rgba(255, 255, 255, 0.08);
+  --tt-border-strong: rgba(255, 255, 255, 0.16);
+
+  // Typography — two families: Inter Tight (display/body) + JetBrains Mono (technical labels)
+  --tt-font-sans: 'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --tt-font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --tt-fs-label: 0.72rem;
+  --tt-fs-sm: 0.875rem;
+  --tt-fs-body: 1rem;
+  --tt-fs-lead: clamp(1.05rem, 0.98rem + 0.35vw, 1.25rem);
+  --tt-fs-h4: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+  --tt-fs-h3: clamp(1.6rem, 1.3rem + 1.2vw, 2.4rem);
+  --tt-fs-h2: clamp(2.3rem, 1.6rem + 3vw, 4.6rem);
+  --tt-fs-display: clamp(2.9rem, 1.6rem + 6vw, 8rem);
+
+  // Spacing scale (4px base)
+  --tt-space-1: 0.25rem;
+  --tt-space-2: 0.5rem;
+  --tt-space-3: 0.75rem;
+  --tt-space-4: 1rem;
+  --tt-space-5: 1.5rem;
+  --tt-space-6: 2rem;
+  --tt-space-7: 3rem;
+  --tt-space-8: 4rem;
+  --tt-space-9: 6rem;
+  --tt-section-y: clamp(5rem, 3rem + 8vw, 10rem);
+
+  // Layout
+  --tt-container: 1240px;
+  --tt-gutter: clamp(1.25rem, 0.75rem + 2.5vw, 3rem);
+  --tt-header-h: 72px;
+
+  // Shape
+  --tt-radius-xs: 4px;
+  --tt-radius-sm: 8px;
+  --tt-radius-md: 14px;
+  --tt-radius-lg: 24px;
+  --tt-radius-pill: 999px;
+
+  // Elevation (subtle on black)
+  --tt-shadow-sm: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 8px 24px rgba(0, 0, 0, 0.35);
+  --tt-shadow-md: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 24px 60px rgba(0, 0, 0, 0.55);
+
+  // Motion
+  --tt-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --tt-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --tt-dur-micro: 180ms;
+  --tt-dur-hover: 260ms;
+  --tt-dur-enter: 750ms;
+  --tt-dur-major: 950ms;
+
+  // Layers
+  --tt-z-base: 1;
+  --tt-z-raised: 10;
+  --tt-z-header: 100;
+  --tt-z-overlay: 200;
+}

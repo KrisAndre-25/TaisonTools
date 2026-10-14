@@ -1,0 +1,57 @@
+<section id="proceso" class="section process" aria-labelledby="proceso-title">
+  <div class="container">
+    <tt-section-head
+      index="03"
+      label="Proceso"
+      titleId="proceso-title"
+      lead="Un recorrido corto y transparente. Ves avances reales en cada etapa, no solo al final."
+    >
+      De la idea <span class="t-dim">a producción</span>
+    </tt-section-head>
+
+    <div class="process__layout">
+      <aside class="process__aside" aria-hidden="true">
+        <div class="counter">
+          <span class="counter__label t-label">Etapa</span>
+          <span class="counter__value">
+            @for (s of [steps[active()]]; track s.number) {
+              <span class="counter__digits">{{ s.number }}</span>
+            }
+          </span>
+          <span class="counter__total t-label">/ 0{{ steps.length }}</span>
+        </div>
+        <p class="process__current t-h4">{{ steps[active()].title }}</p>
+      </aside>
+
+      <div #track class="process__track">
+        <span class="process__rail" aria-hidden="true"
+          ><span #fill class="process__fill"></span
+        ></span>
+
+        <ol class="steps">
+          @for (step of steps; track step.number; let i = $index) {
+            <li
+              #step
+              class="step"
+              [class.is-active]="i === active()"
+              [class.is-past]="i < active()"
+              ttReveal
+            >
+              <span class="step__node" aria-hidden="true"></span>
+              <div class="step__body">
+                <span class="step__num t-label">{{ step.number }}</span>
+                <h3 class="step__title t-h3">{{ step.title }}</h3>
+                <p class="step__desc t-body">{{ step.description }}</p>
+                <ul class="step__deliverables" aria-label="Entregables">
+                  @for (d of step.deliverables; track d) {
+                    <li class="tag">{{ d }}</li>
+                  }
+                </ul>
+              </div>
+            </li>
+          }
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>

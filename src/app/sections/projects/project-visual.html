@@ -1,0 +1,58 @@
+@switch (variant()) {
+  @case ('web') {
+    <div class="browser">
+      <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url"></span></div>
+      <div class="browser__body">
+        <aside class="browser__side">
+          <span class="is-on"></span><span></span><span></span><span></span>
+        </aside>
+        <div class="browser__main">
+          <div class="browser__head"><span></span><b>Nueva reserva</b></div>
+          <div class="cal">
+            @for (d of calendar; track d) {
+              <span [class.is-booked]="booked.has(d)" [class.is-today]="d === 10"></span>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('mobile') {
+    <div class="phone">
+      <div class="phone__notch"></div>
+      <p class="phone__title">Pedido #2048</p>
+      <ol class="timeline">
+        <li class="is-done"><span></span><i>Recibido</i></li>
+        <li class="is-done"><span></span><i>Preparando</i></li>
+        <li class="is-now"><span></span><i>En camino</i></li>
+        <li><span></span><i>Entregado</i></li>
+      </ol>
+      <div class="phone__cta">Ver detalle</div>
+    </div>
+  }
+  @case ('flow') {
+    <svg class="flow" viewBox="0 0 400 300" fill="none">
+      <g class="flow__links">
+        <path d="M80 70 H160 V150 H200" />
+        <path d="M80 150 H200" />
+        <path d="M80 230 H160 V150 H200" />
+        <path class="flow__hot" d="M280 150 H330" />
+      </g>
+      <g class="flow__nodes">
+        <rect x="24" y="52" width="56" height="36" rx="6" />
+        <rect x="24" y="132" width="56" height="36" rx="6" />
+        <rect x="24" y="212" width="56" height="36" rx="6" />
+        <rect class="flow__core" x="200" y="118" width="80" height="64" rx="8" />
+        <rect class="flow__out" x="330" y="128" width="46" height="44" rx="6" />
+      </g>
+      <g class="flow__text">
+        <text x="52" y="74">CSV</text>
+        <text x="52" y="154">API</text>
+        <text x="52" y="234">DB</text>
+        <text x="240" y="146">job</text>
+        <text x="240" y="162">08:00</text>
+        <text x="353" y="154">PDF</text>
+      </g>
+    </svg>
+  }
+}

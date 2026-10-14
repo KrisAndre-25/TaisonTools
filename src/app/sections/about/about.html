@@ -1,0 +1,47 @@
+<section id="nosotros" class="section about" aria-labelledby="nosotros-title">
+  <div class="container">
+    <tt-section-head
+      index="06"
+      label="Nosotros"
+      titleId="nosotros-title"
+      lead="Un equipo pequeño a propósito: hablas directamente con las personas que diseñan y programan tu proyecto."
+    >
+      Quiénes <span class="t-dim">están detrás</span>
+    </tt-section-head>
+
+    <p class="equation" aria-label="Code más Design es igual a Digital Products">
+      <span class="equation__term" ttReveal="clip">Code</span>
+      <span class="equation__op" ttReveal="fade" [revealDelay]="150">+</span>
+      <span class="equation__term" ttReveal="clip" [revealDelay]="200">Design</span>
+      <span class="equation__op" ttReveal="fade" [revealDelay]="350">=</span>
+      <span class="equation__term equation__term--result" ttReveal="clip" [revealDelay]="400"
+        >Digital Products</span
+      >
+    </p>
+
+    <div class="people">
+      @for (person of team; track person.initials; let i = $index) {
+        <article class="person" ttReveal [revealDelay]="i * 120">
+          <div class="person__mark" aria-hidden="true">
+            <span class="person__initials">{{ person.initials }}</span>
+            <span class="person__discipline t-label">{{ person.discipline }}</span>
+          </div>
+          <div class="person__body">
+            <h3 class="person__name t-h4">{{ person.name }}</h3>
+            <ul class="person__roles">
+              @for (role of person.roles; track role) {
+                <li class="t-label">{{ role }}</li>
+              }
+            </ul>
+            <p class="person__bio t-body">{{ person.bio }}</p>
+            <ul class="person__focus" aria-label="Áreas de trabajo">
+              @for (f of person.focus; track f) {
+                <li class="tag">{{ f }}</li>
+              }
+            </ul>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

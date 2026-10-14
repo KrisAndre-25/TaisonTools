@@ -1,0 +1,247 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+.duo {
+  border-top: 1px solid var(--tt-border);
+  background:
+    radial-gradient(ellipse 50% 40% at 50% 45%, rgba(225, 6, 0, 0.06), transparent 70%),
+    var(--tt-bg-2);
+}
+
+.duo__meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tt-space-3);
+}
+
+.duo__rule {
+  width: 2.5rem;
+  height: 1px;
+  background: var(--tt-border-strong);
+}
+
+.duo__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0 0.25em;
+  margin-top: var(--tt-space-5);
+  font-size: clamp(2.6rem, 0.8rem + 7.6vw, 9rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--tt-white);
+  text-align: center;
+
+  @include bp.down(sm) {
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+  }
+}
+
+.duo__x {
+  color: var(--tt-red);
+  font-weight: 300;
+}
+
+.duo__intro {
+  margin: var(--tt-space-6) auto 0;
+  text-align: center;
+}
+
+// ------------------------------------------------------------------ split
+.duo__split {
+  position: relative;
+  display: grid;
+  gap: var(--tt-space-8);
+  margin-top: clamp(3rem, 2rem + 5vw, 7rem);
+
+  @include bp.up(md) {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tt-space-6);
+  transition:
+    opacity var(--tt-dur-hover) var(--tt-ease-out),
+    transform var(--tt-dur-enter) var(--tt-ease-out);
+
+  @include bp.up(md) {
+    padding-block: var(--tt-space-4);
+
+    &--engineering {
+      padding-right: clamp(2.5rem, 1rem + 4vw, 6rem);
+    }
+
+    &--design {
+      padding-left: clamp(2.5rem, 1rem + 4vw, 6rem);
+    }
+  }
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: var(--tt-space-3);
+    border-bottom: 1px solid var(--tt-border);
+  }
+
+  &__statement {
+    max-width: 16ch;
+  }
+
+  &__practices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--tt-space-3) var(--tt-space-4);
+
+    li {
+      position: relative;
+      padding-left: 1rem;
+      color: var(--tt-muted);
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.7em;
+        width: 6px;
+        height: 1px;
+        background: var(--tt-red);
+      }
+    }
+  }
+
+  &__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: var(--tt-space-4);
+    margin-top: auto;
+    padding-top: var(--tt-space-5);
+    border-top: 1px dashed var(--tt-border);
+  }
+
+  &__person {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--tt-white);
+  }
+
+  &__note {
+    font-size: 0.75rem;
+    color: var(--tt-subtle);
+  }
+}
+
+// Hovering one discipline gently recedes the other
+@include bp.hover {
+  .duo__split:has(.panel--engineering:hover) .panel--design,
+  .duo__split:has(.panel--design:hover) .panel--engineering {
+    opacity: 0.45;
+  }
+}
+
+// Central axis: vertical line + × node (horizontal on mobile)
+.duo__axis {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+
+  @include bp.down(md) {
+    display: none;
+  }
+
+  &-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      var(--tt-red) 20%,
+      var(--tt-red) 80%,
+      transparent
+    );
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1200ms var(--tt-ease-out) 300ms;
+  }
+
+  &.is-revealed &-line {
+    transform: scaleY(1);
+  }
+
+  &-node {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--tt-red);
+    border-radius: 50%;
+    background: var(--tt-bg-2);
+    color: var(--tt-red);
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+}
+
+// ------------------------------------------------------------------ overlap
+.overlap {
+  display: grid;
+  gap: var(--tt-space-5);
+  margin-top: clamp(4rem, 3rem + 4vw, 7rem);
+
+  @include bp.up(lg) {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+    gap: var(--tt-space-7);
+  }
+
+  &__list {
+    display: grid;
+    border-top: 1px solid var(--tt-border);
+
+    @include bp.up(md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__item {
+    display: grid;
+    align-content: start;
+    gap: var(--tt-space-3);
+    padding: var(--tt-space-5) 0;
+    border-bottom: 1px solid var(--tt-border);
+
+    @include bp.up(md) {
+      padding: var(--tt-space-5) var(--tt-space-5) var(--tt-space-5) 0;
+      border-bottom: 0;
+
+      & + & {
+        padding-left: var(--tt-space-5);
+        border-left: 1px solid var(--tt-border);
+      }
+    }
+
+    p {
+      color: var(--tt-text);
+      font-size: 1.05rem;
+      line-height: 1.45;
+    }
+  }
+}

@@ -1,0 +1,83 @@
+@use 'breakpoints' as bp;
+
+.container {
+  width: 100%;
+  max-width: calc(var(--tt-container) + var(--tt-gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--tt-gutter);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--tt-section-y);
+}
+
+// Shared section heading: index · label / title
+.section-head {
+  display: grid;
+  gap: var(--tt-space-5);
+  margin-bottom: clamp(3rem, 2rem + 4vw, 6rem);
+
+  @include bp.up(lg) {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    align-items: end;
+    gap: var(--tt-space-7);
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--tt-space-3);
+    align-self: start;
+    padding-top: 0.6em;
+  }
+
+  &__index {
+    color: var(--tt-red);
+  }
+
+  &__rule {
+    flex: 0 0 2.5rem;
+    height: 1px;
+    background: var(--tt-border-strong);
+  }
+
+  &__body {
+    display: grid;
+    gap: var(--tt-space-5);
+  }
+}
+
+.rule {
+  height: 1px;
+  background: var(--tt-border);
+  border: 0;
+  margin: 0;
+}
+
+// Ambient column grid behind the whole page — shared visual continuity
+.page-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  &__inner {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-inline: 1px solid rgba(255, 255, 255, 0.035);
+
+    @include bp.up(md) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__col {
+    border-right: 1px solid rgba(255, 255, 255, 0.035);
+
+    &:last-child {
+      border-right: 0;
+    }
+  }
+}
