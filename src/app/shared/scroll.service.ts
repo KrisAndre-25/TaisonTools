@@ -17,7 +17,12 @@ export class ScrollService {
       behavior: this.viewport.reducedMotion ? 'auto' : 'smooth',
       block: 'start',
     });
-    this.document.defaultView?.history.replaceState(null, '', `#${id}`);
+    try {
+      const win = this.document.defaultView;
+      win?.history.replaceState(null, '', `${win.location.pathname}${win.location.search}#${id}`);
+    } catch {
+      // Sandboxed frames can refuse history updates; scrolling already happened.
+    }
 
     // Move focus for keyboard and screen reader users without a second scroll jump.
     if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
