@@ -22,7 +22,7 @@
   color: var(--tt-muted);
 
   &__op {
-    color: var(--tt-red);
+    color: var(--tt-accent);
     font-weight: 300;
   }
 
@@ -93,7 +93,7 @@
       right: 0;
       top: 0;
       height: 2px;
-      background: var(--tt-red);
+      background: var(--tt-accent);
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 600ms var(--tt-ease-out);
@@ -111,7 +111,7 @@
   }
 
   &__discipline {
-    color: var(--tt-red);
+    color: var(--tt-accent);
   }
 
   &__body {

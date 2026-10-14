@@ -20,7 +20,7 @@
     right: 0;
     top: -1px;
     height: 1px;
-    background: var(--tt-red);
+    background: var(--tt-accent);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 600ms var(--tt-ease-out);
@@ -55,7 +55,7 @@
   transition: color var(--tt-dur-hover);
 
   .is-open & {
-    color: var(--tt-red);
+    color: var(--tt-accent);
   }
 }
 

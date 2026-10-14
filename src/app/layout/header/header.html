@@ -1,5 +1,5 @@
 <header class="header">
-  <div class="header__bar container">
+  <div class="header__bar container" [class.theme-dark]="menuOpen()">
     <a
       class="brand"
       href="#inicio"
@@ -31,17 +31,21 @@
       class="contrast"
       [attr.aria-pressed]="contrast.high()"
       [attr.title]="
-        contrast.high() ? 'Desactivar modo blanco y negro' : 'Activar modo blanco y negro'
+        contrast.high() ? 'Desactivar alto contraste' : 'Activar alto contraste'
       "
       (click)="contrast.toggle()"
     >
       <tt-icon name="contrast" />
-      <span class="contrast__label">B/N</span>
-      <span class="visually-hidden">Modo blanco y negro de alto contraste</span>
+      <span class="contrast__label">Contraste</span>
+      <span class="visually-hidden">Modo de alto contraste</span>
     </button>
 
-    <a class="header__cta btn btn--primary" href="#contacto" (click)="navigate($event, 'contacto')">
-      Hablemos
+    <a
+      class="header__cta btn-ink btn-ink--sm"
+      href="#contacto"
+      (click)="navigate($event, 'contacto')"
+    >
+      <span class="btn-ink__clip"><span class="btn-ink__text">Hablemos</span></span>
     </a>
 
     <button
@@ -62,7 +66,7 @@
 
   <div
     id="mobile-menu"
-    class="menu"
+    class="menu theme-dark"
     [attr.aria-hidden]="!menuOpen()"
     [attr.inert]="menuOpen() ? null : ''"
   >

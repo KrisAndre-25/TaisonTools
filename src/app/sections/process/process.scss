@@ -48,7 +48,7 @@
     font-weight: 600;
     letter-spacing: -0.06em;
     line-height: 0.85;
-    color: var(--tt-red);
+    color: var(--tt-accent);
   }
 
   &__digits {
@@ -85,7 +85,7 @@
 .process__fill {
   position: absolute;
   inset: 0;
-  background: var(--tt-red);
+  background: var(--tt-accent);
   transform: scaleY(0);
   transform-origin: top;
   will-change: transform;
@@ -115,15 +115,15 @@
 
     .is-past &,
     .is-active & {
-      border-color: var(--tt-red);
-      background: var(--tt-red);
+      border-color: var(--tt-accent);
+      background: var(--tt-accent);
     }
 
     .is-active & {
       background: var(--tt-fg);
       box-shadow:
-        0 0 0 3px var(--tt-red),
-        0 0 0 8px var(--tt-red-soft);
+        0 0 0 3px var(--tt-accent),
+        0 0 0 8px var(--tt-accent-soft);
     }
   }
 
@@ -144,7 +144,7 @@
     color: var(--tt-subtle);
 
     .is-active & {
-      color: var(--tt-red);
+      color: var(--tt-accent);
     }
   }
 

@@ -86,7 +86,7 @@
       top: 50%;
       width: 10px;
       height: 1px;
-      background: var(--tt-red);
+      background: var(--tt-accent);
       transform: scaleX(0);
       transform-origin: left;
       transition: transform var(--tt-dur-hover) var(--tt-ease-out);
@@ -113,10 +113,10 @@
 
   &.is-active {
     color: var(--tt-fg);
-    border-color: var(--tt-red);
+    border-color: var(--tt-accent);
 
     .filter__count {
-      color: var(--tt-red);
+      color: var(--tt-accent);
     }
   }
 }
@@ -166,7 +166,7 @@
     height: 0;
     border-style: solid;
     border-width: 0 14px 14px 0;
-    border-color: transparent var(--tt-red) transparent transparent;
+    border-color: transparent var(--tt-accent) transparent transparent;
     opacity: 0;
     transition: opacity var(--tt-dur-micro);
   }

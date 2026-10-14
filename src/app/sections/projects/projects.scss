@@ -75,7 +75,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    border: 1px solid var(--tt-red);
+    border: 1px solid var(--tt-accent);
     opacity: 0;
     transition: opacity var(--tt-dur-hover) var(--tt-ease-out);
     pointer-events: none;
@@ -182,14 +182,14 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: var(--tt-red);
+    background: var(--tt-accent);
     color: var(--tt-on-accent);
     transition: transform var(--tt-dur-hover) var(--tt-ease-out);
   }
 
   &:hover,
   &:focus-visible {
-    border-color: var(--tt-red);
+    border-color: var(--tt-accent);
     background: rgb(var(--tt-accent-rgb) / 0.04);
 
     .slot__title {

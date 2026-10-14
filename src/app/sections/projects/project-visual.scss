@@ -64,7 +64,7 @@
     }
 
     .is-on {
-      background: var(--tt-red);
+      background: var(--tt-accent);
     }
   }
 
@@ -88,7 +88,7 @@
     b {
       padding: 4px 9px;
       border-radius: 999px;
-      background: var(--tt-red);
+      background: var(--tt-accent);
       color: var(--tt-on-accent);
       font-size: 0.55rem;
       font-weight: 500;
@@ -113,7 +113,7 @@
   }
 
   .is-today {
-    border-color: var(--tt-red);
+    border-color: var(--tt-accent);
     background: rgb(var(--tt-accent-rgb) / 0.2);
   }
 }
@@ -150,7 +150,7 @@
   &__cta {
     padding: 9px;
     border-radius: 999px;
-    background: var(--tt-red);
+    background: var(--tt-accent);
     color: var(--tt-on-accent);
     font-size: 0.7rem;
     text-align: center;
@@ -194,9 +194,9 @@
     color: var(--tt-fg);
 
     span {
-      background: var(--tt-red);
-      border-color: var(--tt-red);
-      box-shadow: 0 0 0 4px var(--tt-red-soft);
+      background: var(--tt-accent);
+      border-color: var(--tt-accent);
+      box-shadow: 0 0 0 4px var(--tt-accent-soft);
     }
   }
 }
@@ -214,7 +214,7 @@
 
   &__hot,
   &__links .flow__hot {
-    stroke: var(--tt-red);
+    stroke: var(--tt-accent);
     stroke-width: 1.6;
   }
 
@@ -224,12 +224,12 @@
   }
 
   &__core {
-    stroke: var(--tt-red) !important;
+    stroke: var(--tt-accent) !important;
   }
 
   &__out {
-    fill: var(--tt-red) !important;
-    stroke: var(--tt-red) !important;
+    fill: var(--tt-accent) !important;
+    stroke: var(--tt-accent) !important;
   }
 
   &__text .flow__out-label {

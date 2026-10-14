@@ -1,14 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BRAND } from '../../core/content';
-import { Icon } from '../../shared/icon';
 import { RevealDirective } from '../../shared/reveal.directive';
 
 export type ContactStatus = 'idle' | 'invalid' | 'ready';
 
 @Component({
   selector: 'tt-contact',
-  imports: [Icon, ReactiveFormsModule, RevealDirective],
+  imports: [ReactiveFormsModule, RevealDirective],
   templateUrl: './contact.html',
   styleUrl: './contact.scss',
 })

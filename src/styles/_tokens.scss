@@ -1,26 +1,31 @@
 :root {
-  // Color — white ground, black type, red as a sparing accent
-  --tt-bg: #ffffff;
-  --tt-bg-rgb: 255 255 255;
-  --tt-bg-2: #f6f6f5; // alternate section ground
-  --tt-surface: #fafafa;
-  --tt-surface-2: #f2f2f1;
-  --tt-surface-3: #e4e4e2;
+  // Color — black and white only. The accent is ink: emphasis comes from contrast, not hue.
+  --tt-bg: #fafafa;
+  --tt-bg-rgb: 250 250 250;
+  --tt-bg-2: #efefef; // alternate section ground
+  --tt-surface: #f5f5f5;
+  --tt-surface-2: #ececec;
+  --tt-surface-3: #dcdcdc;
 
-  --tt-red: #e10600;
-  --tt-red-strong: #b80500; // red text/outlines that must pass contrast on white
-  --tt-accent-rgb: 225 6 0;
-  --tt-red-soft: rgb(var(--tt-accent-rgb) / 0.12);
+  --tt-accent: #0a0a0a;
+  --tt-accent-strong: #0a0a0a;
+  --tt-accent-rgb: 10 10 10;
+  --tt-accent-soft: rgb(var(--tt-accent-rgb) / 0.1);
   --tt-on-accent: #ffffff; // text placed on an accent fill
 
   --tt-fg: #0a0a0a; // headings, strongest ink
   --tt-ink-rgb: 10 10 10; // lines and grids are drawn in ink at low alpha
-  --tt-text: #1f1f1f;
-  --tt-muted: #5a5a5a;
-  --tt-subtle: #767676;
+  --tt-text: #1a1a1a;
+  --tt-muted: #555555;
+  --tt-subtle: #737373;
 
-  --tt-border: rgb(var(--tt-ink-rgb) / 0.1);
-  --tt-border-strong: rgb(var(--tt-ink-rgb) / 0.2);
+  --tt-border: rgb(var(--tt-ink-rgb) / 0.12);
+  --tt-border-strong: rgb(var(--tt-ink-rgb) / 0.24);
+
+  // Isometric cube pattern used behind the hero and contact (see .tt-pattern)
+  --tt-pattern-c1: #f2f2f2;
+  --tt-pattern-c2: #cdcbcc;
+  --tt-pattern-c3: #999999;
 
   // Typography — two families: Inter Tight (display/body) + JetBrains Mono (technical labels)
   --tt-font-sans: 'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -79,20 +84,69 @@
   --tt-z-overlay: 200;
 }
 
-// High-contrast black & white mode (header toggle, or OS "increase contrast").
-// Red becomes black, greys get darker, lines get stronger.
+// Inverted scope: put .theme-dark on a section to render it black with white ink.
+// Tokens that are derived from other tokens are restated, because custom properties
+// resolve where they are declared.
+.theme-dark {
+  --tt-bg: #0a0a0a;
+  --tt-bg-rgb: 10 10 10;
+  --tt-bg-2: #0a0a0a;
+  --tt-surface: #121212;
+  --tt-surface-2: #1a1a1a;
+  --tt-surface-3: #2a2a2a;
+
+  --tt-accent: #ffffff;
+  --tt-accent-strong: #ffffff;
+  --tt-accent-rgb: 255 255 255;
+  --tt-accent-soft: rgb(255 255 255 / 0.14);
+  --tt-on-accent: #0a0a0a;
+
+  --tt-fg: #ffffff;
+  --tt-ink-rgb: 255 255 255;
+  --tt-text: #ececec;
+  --tt-muted: #a6a6a6;
+  --tt-subtle: #8c8c8c;
+
+  --tt-border: rgb(255 255 255 / 0.12);
+  --tt-border-strong: rgb(255 255 255 / 0.26);
+
+  --tt-pattern-c1: #0f0f0f;
+  --tt-pattern-c2: #1c1c1c;
+  --tt-pattern-c3: #2e2e2e;
+
+  --tt-shadow-sm: 0 8px 24px rgb(0 0 0 / 0.4);
+  --tt-shadow-md: 0 24px 60px rgb(0 0 0 / 0.5);
+
+  background: var(--tt-bg);
+  color: var(--tt-text);
+  color-scheme: dark;
+}
+
+// High-contrast mode (header toggle, or OS "increase contrast"): pure black and white,
+// darker greys and stronger lines.
 :root[data-contrast='high'] {
-  --tt-red: #000000;
-  --tt-red-strong: #000000;
+  --tt-bg: #ffffff;
+  --tt-bg-rgb: 255 255 255;
+  --tt-accent: #000000;
+  --tt-accent-strong: #000000;
   --tt-accent-rgb: 0 0 0;
-  --tt-on-accent: #ffffff;
 
   --tt-fg: #000000;
   --tt-ink-rgb: 0 0 0;
   --tt-text: #000000;
-  --tt-muted: #2b2b2b;
-  --tt-subtle: #474747;
+  --tt-muted: #262626;
+  --tt-subtle: #404040;
 
-  --tt-border: rgb(0 0 0 / 0.28);
-  --tt-border-strong: rgb(0 0 0 / 0.55);
+  --tt-border: rgb(0 0 0 / 0.3);
+  --tt-border-strong: rgb(0 0 0 / 0.6);
+}
+
+:root[data-contrast='high'] .theme-dark {
+  --tt-bg: #000000;
+  --tt-text: #ffffff;
+  --tt-muted: #dcdcdc;
+  --tt-subtle: #c2c2c2;
+
+  --tt-border: rgb(255 255 255 / 0.32);
+  --tt-border-strong: rgb(255 255 255 / 0.6);
 }

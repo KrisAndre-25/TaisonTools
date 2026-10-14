@@ -1,5 +1,5 @@
-<section id="inicio" class="hero" aria-labelledby="hero-title">
-  <div class="hero__grid" aria-hidden="true"></div>
+<section id="inicio" class="hero has-pattern" aria-labelledby="hero-title">
+  <div class="tt-pattern" aria-hidden="true"></div>
 
   <div class="hero__brand container">
     <tt-logo class="hero__logo" [interactive]="true" label="TaisonTools" />
@@ -27,8 +27,8 @@
       </p>
 
       <div class="hero__actions">
-        <a class="btn btn--primary" href="#contacto" (click)="navigate($event, 'contacto')">
-          Hablemos <tt-icon class="btn__icon" name="arrow-right" />
+        <a class="btn-ink" href="#contacto" (click)="navigate($event, 'contacto')">
+          <span class="btn-ink__clip"><span class="btn-ink__text">Hablemos</span></span>
         </a>
         <a class="btn btn--ghost" href="#proyectos" (click)="navigate($event, 'proyectos')">
           Ver proyectos
@@ -73,7 +73,7 @@
               <span class="wire__bar wire__bar--md"></span>
               <span class="wire__bar wire__bar--sm"></span>
               <div class="wire__target">
-                <span class="wire__btn">Hablemos →</span>
+                <span class="wire__btn">HABLEMOS</span>
                 <span class="wire__handle wire__handle--tl"></span>
                 <span class="wire__handle wire__handle--tr"></span>
                 <span class="wire__handle wire__handle--bl"></span>
@@ -84,7 +84,7 @@
             <dl class="props t-mono">
               <div>
                 <dt>fill</dt>
-                <dd><i class="swatch"></i>#E10600</dd>
+                <dd><i class="swatch"></i>#0A0A0A</dd>
               </div>
               <div>
                 <dt>radius</dt>
@@ -92,7 +92,7 @@
               </div>
               <div>
                 <dt>font</dt>
-                <dd>Inter Tight 500</dd>
+                <dd>Inter Tight 800</dd>
               </div>
             </dl>
           </div>
@@ -102,12 +102,12 @@
             class="layer layer--code t-mono"
             [class.is-active]="phase() === 1"
             aria-hidden="true"
-          ><code><span class="c-dim">01</span>  <span class="c-tag">&lt;a</span> <span class="c-attr">class</span>=<span class="c-str">"btn btn--primary"</span><span class="c-tag">&gt;</span>
+          ><code><span class="c-dim">01</span>  <span class="c-tag">&lt;a</span> <span class="c-attr">class</span>=<span class="c-str">"btn-ink"</span><span class="c-tag">&gt;</span>
 <span class="c-dim">02</span>    Hablemos
 <span class="c-dim">03</span>  <span class="c-tag">&lt;/a&gt;</span>
 <span class="c-dim">04</span>
-<span class="c-dim">05</span>  <span class="c-sel">.btn--primary</span> &#123;
-<span class="c-dim">06</span>    <span class="c-attr">background</span>: <span class="c-str">var(--tt-red)</span>;
+<span class="c-dim">05</span>  <span class="c-sel">.btn-ink</span> &#123;
+<span class="c-dim">06</span>    <span class="c-attr">background</span>: <span class="c-str">var(--tt-fg)</span>;
 <span class="c-dim">07</span>    <span class="c-attr">border-radius</span>: <span class="c-num">999px</span>;
 <span class="c-dim">08</span>  &#125;</code></pre>
 

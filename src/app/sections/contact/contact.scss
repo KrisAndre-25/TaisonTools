@@ -109,12 +109,12 @@
 
     &:focus {
       outline: none;
-      border-color: var(--tt-red);
+      border-color: var(--tt-accent);
     }
 
     &:focus-visible {
       outline: none;
-      box-shadow: 0 1px 0 var(--tt-red);
+      box-shadow: 0 1px 0 var(--tt-accent);
     }
 
     &--area {
@@ -124,11 +124,11 @@
   }
 
   &.has-error .field__input {
-    border-color: var(--tt-red-strong);
+    border-color: var(--tt-accent-strong);
   }
 
   &__error {
-    color: var(--tt-red-strong);
+    color: var(--tt-accent-strong);
     font-size: var(--tt-fs-sm);
   }
 }
@@ -178,7 +178,7 @@
   }
 
   input:focus-visible + span {
-    outline: 2px solid var(--tt-red-strong);
+    outline: 2px solid var(--tt-accent-strong);
     outline-offset: 3px;
   }
 }
@@ -209,7 +209,7 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: var(--tt-red);
+    background: var(--tt-accent);
     color: var(--tt-on-accent);
   }
 

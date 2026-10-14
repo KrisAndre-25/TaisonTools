@@ -76,12 +76,12 @@ dd {
 }
 
 ::selection {
-  background: var(--tt-red);
+  background: var(--tt-accent);
   color: var(--tt-on-accent);
 }
 
 :focus-visible {
-  outline: 2px solid var(--tt-red-strong);
+  outline: 2px solid var(--tt-accent-strong);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -92,7 +92,7 @@ dd {
   top: -100px;
   z-index: calc(var(--tt-z-overlay) + 1);
   padding: var(--tt-space-3) var(--tt-space-4);
-  background: var(--tt-red);
+  background: var(--tt-accent);
   color: var(--tt-on-accent);
   font-family: var(--tt-font-mono);
   font-size: var(--tt-fs-sm);

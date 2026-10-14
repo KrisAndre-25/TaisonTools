@@ -14,20 +14,6 @@
   overflow: hidden;
 }
 
-// Blueprint grid fading out towards the edges, with one red crosshair
-.hero__grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(to right, rgb(var(--tt-ink-rgb) / 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(var(--tt-ink-rgb) / 0.045) 1px, transparent 1px);
-  background-size: 80px 80px;
-  background-position: center top;
-  mask-image: radial-gradient(ellipse 70% 60% at 65% 40%, #000 20%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 65% 40%, #000 20%, transparent 75%);
-  animation: tt-enter-fade 1200ms var(--tt-ease-out) 400ms both;
-}
-
 .hero__inner {
   position: relative;
   flex: 1;
@@ -222,8 +208,8 @@
     }
 
     .dot.is-live {
-      background: var(--tt-red);
-      box-shadow: 0 0 0 4px var(--tt-red-soft);
+      background: var(--tt-accent);
+      box-shadow: 0 0 0 4px var(--tt-accent-soft);
     }
   }
 
@@ -251,7 +237,7 @@
       right: 0;
       bottom: -1px;
       height: 2px;
-      background: var(--tt-red);
+      background: var(--tt-accent);
       transform: scaleX(0);
       transition: transform var(--tt-dur-hover) var(--tt-ease-out);
     }
@@ -284,7 +270,7 @@
     right: 0;
     bottom: 0;
     height: 2px;
-    background: var(--tt-red);
+    background: var(--tt-accent);
     transform-origin: left;
     animation: tt-draw-x 3600ms linear both;
     opacity: 0.6;
@@ -347,7 +333,7 @@
     position: relative;
     align-self: flex-start;
     padding: 6px;
-    outline: 1px solid var(--tt-red);
+    outline: 1px solid var(--tt-accent);
   }
 
   &__btn {
@@ -356,7 +342,7 @@
     height: 36px;
     padding: 0 1rem;
     border-radius: 999px;
-    background: var(--tt-red);
+    background: var(--tt-accent);
     color: var(--tt-on-accent);
     font-size: 0.8rem;
     font-weight: 500;
@@ -367,7 +353,7 @@
     width: 7px;
     height: 7px;
     background: var(--tt-bg);
-    border: 1px solid var(--tt-red);
+    border: 1px solid var(--tt-accent);
 
     &--tl {
       top: -4px;
@@ -397,7 +383,7 @@
     translate: -50% 0;
     padding: 2px 6px;
     border-radius: 3px;
-    background: var(--tt-red);
+    background: var(--tt-accent);
     color: var(--tt-on-accent);
     font-size: 0.65rem;
     white-space: nowrap;
@@ -431,7 +417,7 @@
   width: 9px;
   height: 9px;
   border-radius: 2px;
-  background: var(--tt-red);
+  background: var(--tt-accent);
 }
 
 // Code + deploy layers
@@ -464,7 +450,7 @@
 
 .c-str,
 .c-num {
-  color: var(--tt-red-strong);
+  color: var(--tt-accent-strong);
 }
 
 .c-ok {
@@ -482,7 +468,7 @@
   color: var(--tt-fg);
 
   .dot {
-    box-shadow: 0 0 0 4px var(--tt-red-soft);
+    box-shadow: 0 0 0 4px var(--tt-accent-soft);
   }
 }
 
@@ -522,7 +508,7 @@
       color: var(--tt-fg);
 
       .hero__phase-num {
-        color: var(--tt-red);
+        color: var(--tt-accent);
       }
     }
   }

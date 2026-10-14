@@ -44,7 +44,7 @@
 }
 
 .duo__x {
-  color: var(--tt-red);
+  color: var(--tt-accent);
   font-weight: 300;
 }
 
@@ -114,7 +114,7 @@
         top: 0.7em;
         width: 6px;
         height: 1px;
-        background: var(--tt-red);
+        background: var(--tt-accent);
       }
     }
   }
@@ -171,8 +171,8 @@
     background: linear-gradient(
       to bottom,
       transparent,
-      var(--tt-red) 20%,
-      var(--tt-red) 80%,
+      var(--tt-accent) 20%,
+      var(--tt-accent) 80%,
       transparent
     );
     transform: scaleY(0);
@@ -195,8 +195,8 @@
     background: var(--tt-bg-2);
     box-shadow:
       0 0 0 6px var(--tt-bg-2),
-      0 0 0 7px var(--tt-red);
-    color: var(--tt-red);
+      0 0 0 7px var(--tt-accent);
+    color: var(--tt-accent);
     font-size: 1.5rem;
     font-weight: 300;
   }

@@ -79,7 +79,7 @@
       right: 0.8rem;
       bottom: 0.2rem;
       height: 1px;
-      background: var(--tt-red);
+      background: var(--tt-accent);
       transform: scaleX(0);
       transform-origin: right;
       transition: transform var(--tt-dur-hover) var(--tt-ease-out);
@@ -137,14 +137,27 @@
     color: var(--tt-bg);
   }
 
+  // Icon only on phones and on the tight 1024–1279px desktop range
   &__label {
     @include bp.down(sm) {
       display: none;
+    }
+
+    @include bp.up(lg) {
+      @include bp.down(xl) {
+        display: none;
+      }
     }
   }
 
   @include bp.down(sm) {
     padding: 0;
+  }
+
+  @include bp.up(lg) {
+    @include bp.down(xl) {
+      padding: 0;
+    }
   }
 }
 
@@ -173,9 +186,6 @@
 
 .header__cta {
   display: none;
-  min-height: 42px;
-  padding-inline: 1.15rem;
-  font-size: 0.875rem;
 
   @include bp.up(lg) {
     display: inline-flex;
@@ -278,7 +288,7 @@
     color: var(--tt-fg);
 
     &.is-active .menu__index {
-      color: var(--tt-red);
+      color: var(--tt-accent);
     }
   }
 

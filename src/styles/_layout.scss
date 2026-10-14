@@ -33,7 +33,7 @@
   }
 
   &__index {
-    color: var(--tt-red);
+    color: var(--tt-accent);
   }
 
   &__rule {
@@ -79,5 +79,65 @@
     &:last-child {
       border-right: 0;
     }
+  }
+}
+
+// Isometric cube pattern, used only as a faded backdrop (hero and contact).
+// Blurred and masked to an ellipse so it reads as texture, never as content.
+.tt-pattern {
+  --s: 84px;
+  --_g: 0 120deg, #0000 0;
+
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    conic-gradient(from 0deg at calc(500% / 6) calc(100% / 3), var(--tt-pattern-c3) var(--_g)),
+    conic-gradient(from -120deg at calc(100% / 6) calc(100% / 3), var(--tt-pattern-c2) var(--_g)),
+    conic-gradient(from 120deg at calc(100% / 3) calc(500% / 6), var(--tt-pattern-c1) var(--_g)),
+    conic-gradient(from 120deg at calc(200% / 3) calc(500% / 6), var(--tt-pattern-c1) var(--_g)),
+    conic-gradient(
+      from -180deg at calc(100% / 3) 50%,
+      var(--tt-pattern-c2) 60deg,
+      var(--tt-pattern-c1) var(--_g)
+    ),
+    conic-gradient(
+      from 60deg at calc(200% / 3) 50%,
+      var(--tt-pattern-c1) 60deg,
+      var(--tt-pattern-c3) var(--_g)
+    ),
+    conic-gradient(
+      from -60deg at 50% calc(100% / 3),
+      var(--tt-pattern-c1) 120deg,
+      var(--tt-pattern-c2) 0 240deg,
+      var(--tt-pattern-c3) 0
+    );
+  background-size: calc(var(--s) * 1.732) var(--s);
+  opacity: var(--pattern-opacity, 0.35);
+  filter: blur(1.5px);
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 60% at var(--pattern-at, 70% 35%),
+    #000 5%,
+    transparent 72%
+  );
+  mask-image: radial-gradient(
+    ellipse 70% 60% at var(--pattern-at, 70% 35%),
+    #000 5%,
+    transparent 72%
+  );
+
+  @include bp.down(md) {
+    --s: 56px;
+  }
+}
+
+.has-pattern {
+  position: relative;
+  isolation: isolate;
+
+  > .container {
+    position: relative;
+    z-index: 1;
   }
 }

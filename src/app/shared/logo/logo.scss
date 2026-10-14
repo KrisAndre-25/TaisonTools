@@ -20,7 +20,7 @@
 
 // Rotates around the centre of the "O" ring (user units of the viewBox).
 .logo__wrench {
-  fill: var(--tt-red);
+  fill: var(--tt-accent);
   transform-box: view-box;
   transform-origin: 3150.5px 277.5px;
   transition: transform 700ms var(--tt-ease-out);
