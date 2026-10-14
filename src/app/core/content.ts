@@ -12,6 +12,7 @@ export const BRAND = {
   name: 'TaisonTools',
   tagline: 'Engineering × Design',
   location: 'Santiago, Chile',
+  email: 'contacto@taisontools.com',
 } as const;
 
 export const NAV_ITEMS: readonly NavItem[] = [
