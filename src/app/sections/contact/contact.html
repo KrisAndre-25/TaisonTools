@@ -41,28 +41,36 @@
       @if (status() !== 'ready') {
         <form class="form" [formGroup]="form" (ngSubmit)="submit()" novalidate ttReveal="right">
           <div class="field" [class.has-error]="showError('name')">
-            <label class="field__label t-label" for="contact-name">Nombre</label>
+            <label class="field__label t-label" for="contact-name"
+              >Nombre <span class="field__req" aria-hidden="true">*</span></label
+            >
             <input
               id="contact-name"
               class="field__input"
               type="text"
               formControlName="name"
+              required
               autocomplete="name"
               [attr.aria-invalid]="showError('name')"
               [attr.aria-describedby]="showError('name') ? 'contact-name-error' : null"
             />
             @if (showError('name')) {
-              <p id="contact-name-error" class="field__error">Escribe tu nombre.</p>
+              <p id="contact-name-error" class="field__error">
+                <span class="field__error-icon" aria-hidden="true">!</span>Escribe tu nombre.
+              </p>
             }
           </div>
 
           <div class="field" [class.has-error]="showError('email')">
-            <label class="field__label t-label" for="contact-email">Email</label>
+            <label class="field__label t-label" for="contact-email"
+              >Email <span class="field__req" aria-hidden="true">*</span></label
+            >
             <input
               id="contact-email"
               class="field__input"
               type="email"
               formControlName="email"
+              required
               autocomplete="email"
               inputmode="email"
               [attr.aria-invalid]="showError('email')"
@@ -70,13 +78,16 @@
             />
             @if (showError('email')) {
               <p id="contact-email-error" class="field__error">
+                <span class="field__error-icon" aria-hidden="true">!</span>
                 Necesitamos un email válido para responderte.
               </p>
             }
           </div>
 
           <fieldset class="field field--chips">
-            <legend class="field__label t-label">Tipo de proyecto</legend>
+            <legend class="field__label t-label">
+              Tipo de proyecto <span class="field__req" aria-hidden="true">*</span>
+            </legend>
             <div class="chips">
               @for (type of projectTypes; track type) {
                 <label class="chip">
@@ -88,17 +99,21 @@
           </fieldset>
 
           <div class="field" [class.has-error]="showError('message')">
-            <label class="field__label t-label" for="contact-message">Tu idea</label>
+            <label class="field__label t-label" for="contact-message"
+              >Tu idea <span class="field__req" aria-hidden="true">*</span></label
+            >
             <textarea
               id="contact-message"
               class="field__input field__input--area"
               rows="4"
               formControlName="message"
+              required
               [attr.aria-invalid]="showError('message')"
               [attr.aria-describedby]="showError('message') ? 'contact-message-error' : null"
             ></textarea>
             @if (showError('message')) {
               <p id="contact-message-error" class="field__error">
+                <span class="field__error-icon" aria-hidden="true">!</span>
                 Cuéntanos un poco más (mínimo 20 caracteres).
               </p>
             }

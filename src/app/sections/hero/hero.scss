@@ -63,6 +63,11 @@
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
+
+  // The badge wraps on phones instead of pushing the page wider
+  @include bp.down(sm) {
+    white-space: normal;
+  }
 }
 
 .hero__meta-rule {
@@ -221,7 +226,7 @@
 
   &__tab {
     position: relative;
-    min-height: 44px;
+    min-height: 48px;
     padding: 0 0.5rem;
     color: var(--tt-subtle);
     transition: color var(--tt-dur-micro);
@@ -344,7 +349,7 @@
     border-radius: 999px;
     background: var(--tt-accent);
     color: var(--tt-on-accent);
-    font-size: 0.8rem;
+    font-size: 0.8125rem;
     font-weight: 500;
   }
 
@@ -385,7 +390,7 @@
     border-radius: 3px;
     background: var(--tt-accent);
     color: var(--tt-on-accent);
-    font-size: 0.65rem;
+    font-size: 0.8125rem;
     white-space: nowrap;
   }
 }
@@ -397,7 +402,7 @@
   gap: var(--tt-space-3);
   padding-top: var(--tt-space-4);
   border-top: 1px dashed var(--tt-border-strong);
-  font-size: 0.7rem;
+  font-size: 0.8125rem;
 
   dt {
     color: var(--tt-subtle);
@@ -423,7 +428,7 @@
 // Code + deploy layers
 .layer--code,
 .layer--deploy {
-  font-size: clamp(0.72rem, 0.68rem + 0.2vw, 0.82rem);
+  font-size: clamp(0.8125rem, 0.78rem + 0.15vw, 0.875rem);
   line-height: 1.85;
   color: var(--tt-text);
   white-space: pre;

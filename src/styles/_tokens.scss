@@ -17,10 +17,11 @@
   --tt-ink-rgb: 10 10 10; // lines and grids are drawn in ink at low alpha
   --tt-text: #1a1a1a;
   --tt-muted: #555555;
-  --tt-subtle: #737373;
+  --tt-subtle: #6b6b6b; // ≥4.5:1 on #fafafa and #efefef
 
   --tt-border: rgb(var(--tt-ink-rgb) / 0.12);
   --tt-border-strong: rgb(var(--tt-ink-rgb) / 0.24);
+  --tt-input-border: #767676; // ≥3:1 against the ground so fields are visible
 
   // Isometric cube pattern used behind the hero and contact (see .tt-pattern)
   --tt-pattern-c1: #f2f2f2;
@@ -31,7 +32,7 @@
   --tt-font-sans: 'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --tt-font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
 
-  --tt-fs-label: 0.72rem;
+  --tt-fs-label: 0.8125rem; // 13px floor for all text
   --tt-fs-sm: 0.875rem;
   --tt-fs-body: 1rem;
   --tt-fs-lead: clamp(1.05rem, 0.98rem + 0.35vw, 1.25rem);
@@ -109,6 +110,7 @@
 
   --tt-border: rgb(255 255 255 / 0.12);
   --tt-border-strong: rgb(255 255 255 / 0.26);
+  --tt-input-border: #6b6b6b;
 
   --tt-pattern-c1: #0f0f0f;
   --tt-pattern-c2: #1c1c1c;
@@ -147,6 +149,7 @@
 
   --tt-border: rgb(255 255 255 / 0.24);
   --tt-border-strong: rgb(255 255 255 / 0.5);
+  --tt-input-border: #8a8a8a;
 
   --tt-pattern-c1: #050505;
   --tt-pattern-c2: #151515;
@@ -172,6 +175,7 @@
 
   --tt-border: rgb(255 255 255 / 0.26);
   --tt-border-strong: rgb(255 255 255 / 0.55);
+  --tt-input-border: #8f8f8f;
 
   --tt-pattern-c1: #121212;
   --tt-pattern-c2: #222222;

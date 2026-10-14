@@ -96,25 +96,23 @@
     min-height: 48px;
     padding: 0.75rem 0;
     border: 0;
-    border-bottom: 1px solid var(--tt-border-strong);
+    border-bottom: 1px solid var(--tt-input-border);
     border-radius: 0;
     background: transparent;
     color: var(--tt-fg);
-    font-size: 1.05rem;
+    font-size: 1rem; // 16px: readable and avoids iOS zoom on focus
     transition: border-color var(--tt-dur-micro);
 
     &:hover {
       border-color: var(--tt-muted);
     }
 
-    &:focus {
-      outline: none;
-      border-color: var(--tt-accent);
-    }
-
+    // Focus: solid ink line, doubled so it reads without relying on colour
+    &:focus,
     &:focus-visible {
       outline: none;
-      box-shadow: 0 1px 0 var(--tt-accent);
+      border-color: var(--tt-fg);
+      box-shadow: 0 1px 0 var(--tt-fg);
     }
 
     &--area {
@@ -123,13 +121,36 @@
     }
   }
 
+  // Error: thick line + "!" badge + message under the field (not colour alone)
   &.has-error .field__input {
-    border-color: var(--tt-accent-strong);
+    border-bottom-width: 2px;
+    border-color: var(--tt-fg);
   }
 
   &__error {
-    color: var(--tt-accent-strong);
+    display: flex;
+    align-items: center;
+    gap: var(--tt-space-2);
+    color: var(--tt-fg);
     font-size: var(--tt-fs-sm);
+  }
+
+  &__error-icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: var(--tt-fg);
+    color: var(--tt-bg);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  &__req {
+    color: var(--tt-fg);
   }
 }
 
@@ -154,7 +175,7 @@
   span {
     display: inline-flex;
     align-items: center;
-    min-height: 40px;
+    min-height: 44px;
     padding: 0 1rem;
     border: 1px solid var(--tt-border-strong);
     border-radius: var(--tt-radius-pill);
