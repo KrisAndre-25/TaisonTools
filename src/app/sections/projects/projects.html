@@ -28,7 +28,7 @@
 
           <div class="project__info">
             <div class="project__top">
-              <span class="t-label t-accent">Project {{ project.number }}</span>
+              <span class="t-label t-accent" lang="en">Project {{ project.number }}</span>
               <span class="t-label t-dim">{{ project.category }}</span>
             </div>
             <h3 class="project__name t-h3">{{ project.name }}</h3>
@@ -50,7 +50,7 @@
       }
 
       <a class="slot" href="#contacto" (click)="navigate($event, 'contacto')" ttReveal>
-        <span class="t-label t-dim">Project 0{{ projects.length + 1 }}</span>
+        <span class="t-label t-dim" lang="en">Project 0{{ projects.length + 1 }}</span>
         <span class="slot__title t-h3">Este espacio es para el tuyo.</span>
         <span class="slot__cta">
           Cuéntanos tu idea
