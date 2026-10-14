@@ -23,10 +23,23 @@
     pathLength="1"
   />
   <!-- Outer group follows the pointer, inner group runs the entrance; the path keeps
-       its own potrace transform, which a CSS transform on the same element would replace. -->
-  <g class="logo__wrench" [style.transform]="'rotate(' + angle() + 'deg)'">
-    <g class="logo__wrench-intro">
-      <path [attr.transform]="pathTransform" [attr.d]="paths.wrench" />
+       its own transform, which a CSS transform on the same element would replace. -->
+  <!-- SVG strokes are centred on the path. To keep the line outside the cursor only, it is
+       drawn twice as wide and its inner half is masked away by the cursor's own shape. -->
+  <defs>
+    <mask [attr.id]="maskId" maskUnits="userSpaceOnUse" x="-6" y="-6" width="36" height="36">
+      <rect x="-6" y="-6" width="36" height="36" fill="#fff" />
+      <path [attr.d]="cursor.d" fill="#000" />
+    </mask>
+  </defs>
+  <g class="logo__cursor" [style.transform]="'rotate(' + angle() + 'deg)'">
+    <g class="logo__cursor-intro">
+      <path
+        [attr.transform]="cursor.transform"
+        [attr.d]="cursor.d"
+        [attr.stroke-width]="cursor.outline * 2"
+        [attr.mask]="'url(#' + maskId + ')'"
+      />
     </g>
   </g>
 </svg>

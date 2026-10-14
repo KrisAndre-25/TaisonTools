@@ -19,15 +19,17 @@
 }
 
 // Rotates around the centre of the "O" ring (user units of the viewBox).
-.logo__wrench {
-  fill: var(--tt-accent);
+.logo__cursor {
+  fill: none;
+  stroke: var(--tt-accent);
+  stroke-linejoin: round;
   transform-box: view-box;
   transform-origin: 3150.5px 277.5px;
   transition: transform 700ms var(--tt-ease-out);
 }
 
-// Static logo (header, footer): the wrench gives a quarter turn on hover.
-:host(:not(.is-interactive):hover) .logo__wrench {
+// Static logo (header, footer): the cursor gives a quarter turn on hover.
+:host(:not(.is-interactive):hover) .logo__cursor {
   transform: rotate(45deg) !important;
 }
 
@@ -49,10 +51,10 @@
     animation: logo-draw 1000ms var(--tt-ease-out) 450ms both;
   }
 
-  .logo__wrench-intro {
+  .logo__cursor-intro {
     transform-box: view-box;
     transform-origin: 3150.5px 277.5px;
-    animation: logo-wrench 900ms var(--tt-ease-out) 1050ms both;
+    animation: logo-cursor 900ms var(--tt-ease-out) 1050ms both;
   }
 }
 
@@ -80,7 +82,7 @@
   }
 }
 
-@keyframes logo-wrench {
+@keyframes logo-cursor {
   from {
     opacity: 0;
     transform: rotate(-180deg) scale(0.6);

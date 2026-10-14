@@ -10,14 +10,20 @@ import {
   viewChild,
 } from '@angular/core';
 import { ViewportService } from '../viewport.service';
-import { LOGO_PATHS, LOGO_PATH_TRANSFORM, LOGO_RING, LOGO_VIEWBOX } from './logo-paths';
+import {
+  LOGO_CURSOR,
+  LOGO_PATHS,
+  LOGO_PATH_TRANSFORM,
+  LOGO_RING,
+  LOGO_VIEWBOX,
+} from './logo-paths';
 
-/** The wrench's jaw points up-right (−45°) in the artwork. */
-const WRENCH_REST_ANGLE = -45;
+
+let nextLogoId = 0;
 
 /**
- * TaisonTools wordmark. With `interactive`, it draws itself in on load and the wrench
- * inside the "O" turns to follow the pointer; a click or tap gives it a full turn.
+ * TaisonTools wordmark. With `interactive`, it draws itself in on load and the cursor
+ * inside the "O" turns its tip towards the pointer; a click or tap gives it a full turn.
  */
 @Component({
   selector: 'tt-logo',
@@ -35,6 +41,9 @@ export class Logo {
 
   protected readonly paths = LOGO_PATHS;
   protected readonly ring = LOGO_RING;
+  protected readonly cursor = LOGO_CURSOR;
+  /** Unique per instance: the header, hero and footer each draw the logo. */
+  protected readonly maskId = `tt-logo-cursor-${nextLogoId++}`;
   protected readonly viewBox = LOGO_VIEWBOX;
   protected readonly pathTransform = LOGO_PATH_TRANSFORM;
   protected readonly angle = signal(0);
@@ -60,7 +69,7 @@ export class Logo {
         const cx = box.left + ((this.ring.cx - vx) / vw) * box.width;
         const cy = box.top + ((this.ring.cy - vy) / vh) * box.height;
         const target =
-          (Math.atan2(pointer.y - cy, pointer.x - cx) * 180) / Math.PI - WRENCH_REST_ANGLE;
+          (Math.atan2(pointer.y - cy, pointer.x - cx) * 180) / Math.PI - LOGO_CURSOR.tipAngle;
         // Turn the shortest way round instead of jumping across ±180°.
         const current = this.angle();
         const delta = ((((target - current) % 360) + 540) % 360) - 180;
