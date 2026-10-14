@@ -1,0 +1,60 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--tt-z-overlay) + 10);
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--tt-space-5);
+  background: var(--tt-bg);
+  color: var(--tt-fg);
+  transition:
+    opacity 650ms var(--tt-ease-out),
+    visibility 0s linear 650ms;
+
+  &.is-leaving {
+    opacity: 0;
+    visibility: hidden;
+
+    .loader__mark {
+      transform: scale(1.08);
+    }
+  }
+}
+
+.loader__mark {
+  // Fixed size: the ring and cursor strokes are computed for exactly 2px at this width.
+  width: 112px;
+  height: auto;
+  overflow: visible;
+  transition: transform 650ms var(--tt-ease-out);
+}
+
+.loader__track {
+  fill: none;
+  stroke: var(--tt-border);
+}
+
+.loader__ring {
+  fill: none;
+  stroke: var(--tt-fg);
+  stroke-dasharray: 1;
+}
+
+// Turns around the centre of the ring, like the cursor in the logo.
+.loader__cursor {
+  fill: none;
+  stroke: var(--tt-fg);
+  stroke-linejoin: round;
+  transform-box: view-box;
+  transform-origin: 3150.5px 277.5px;
+}
+
+.loader__percent {
+  min-width: 4ch;
+  font-size: var(--tt-fs-sm);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.14em;
+  text-align: center;
+  color: var(--tt-muted);
+}

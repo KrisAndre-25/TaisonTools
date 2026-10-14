@@ -1,0 +1,41 @@
+@if (!done()) {
+  <div
+    class="loader"
+    [class.is-leaving]="leaving()"
+    role="progressbar"
+    aria-label="Cargando TaisonTools"
+    aria-valuemin="1"
+    aria-valuemax="100"
+    [attr.aria-valuenow]="percent()"
+  >
+    <svg class="loader__mark" [attr.viewBox]="viewBox" aria-hidden="true" focusable="false">
+      <circle
+        class="loader__track"
+        [attr.cx]="ring.cx"
+        [attr.cy]="ring.cy"
+        [attr.r]="ring.r"
+        [attr.stroke-width]="ringStroke"
+      />
+      <!-- Starts at 12 o'clock and draws clockwise with the progress -->
+      <circle
+        class="loader__ring"
+        [attr.cx]="ring.cx"
+        [attr.cy]="ring.cy"
+        [attr.r]="ring.r"
+        [attr.stroke-width]="ringStroke"
+        [attr.transform]="'rotate(-90 ' + ring.cx + ' ' + ring.cy + ')'"
+        pathLength="1"
+        [style.stroke-dashoffset]="1 - progress()"
+      />
+      <g class="loader__cursor" [style.transform]="'rotate(' + angle() + 'deg)'">
+        <path
+          [attr.transform]="cursor.transform"
+          [attr.d]="cursor.d"
+          [attr.stroke-width]="cursorStroke"
+        />
+      </g>
+    </svg>
+
+    <p class="loader__percent t-mono" aria-hidden="true">{{ percent() }}%</p>
+  </div>
+}
