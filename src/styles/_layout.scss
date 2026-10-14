@@ -48,6 +48,18 @@
   }
 }
 
+// Section label ("01 — Servicios") read as a title: larger, heavier and in full ink.
+// Shared by the section head and the two sections that draw their own (Cómo pensamos,
+// Contacto). Loaded after typography, so it overrides the small .t-label size.
+.section-head__meta,
+.duo__meta,
+.contact__meta {
+  font-size: clamp(1.05rem, 0.85rem + 0.7vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--tt-fg);
+}
+
 .rule {
   height: 1px;
   background: var(--tt-border);
