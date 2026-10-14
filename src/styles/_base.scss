@@ -25,7 +25,8 @@ body {
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
 
-  &.is-locked {
+  &.is-locked,
+  &.is-loading {
     overflow: hidden;
   }
 }
