@@ -108,11 +108,11 @@
   }
 
   &:hover {
-    color: var(--tt-white);
+    color: var(--tt-fg);
   }
 
   &.is-active {
-    color: var(--tt-white);
+    color: var(--tt-fg);
     border-color: var(--tt-red);
 
     .filter__count {
@@ -179,7 +179,7 @@
     }
 
     .tile__short {
-      color: var(--tt-white);
+      color: var(--tt-fg);
       transform: translateY(-3px);
     }
   }
@@ -200,7 +200,7 @@
   }
 
   &__name {
-    color: var(--tt-white);
+    color: var(--tt-fg);
     font-weight: 500;
   }
 

@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100svh;
-  padding-top: calc(var(--tt-header-h) + clamp(2rem, 1rem + 5vh, 5rem));
+  padding-top: calc(var(--tt-header-h) + clamp(1.5rem, 0.5rem + 4vh, 4rem));
   padding-bottom: var(--tt-space-5);
   overflow: hidden;
 }
@@ -19,45 +19,13 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    linear-gradient(to right, rgb(var(--tt-ink-rgb) / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--tt-ink-rgb) / 0.045) 1px, transparent 1px);
   background-size: 80px 80px;
   background-position: center top;
   mask-image: radial-gradient(ellipse 70% 60% at 65% 40%, #000 20%, transparent 75%);
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 65% 40%, #000 20%, transparent 75%);
   animation: tt-enter-fade 1200ms var(--tt-ease-out) 400ms both;
-}
-
-.hero__cross {
-  position: absolute;
-  top: 160px;
-  left: 50%;
-  width: 21px;
-  height: 21px;
-  translate: -10px -10px;
-
-  @include bp.down(lg) {
-    display: none;
-  }
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    background: var(--tt-red);
-  }
-
-  &::before {
-    left: 10px;
-    width: 1px;
-    height: 100%;
-  }
-
-  &::after {
-    top: 10px;
-    height: 1px;
-    width: 100%;
-  }
 }
 
 .hero__inner {
@@ -78,30 +46,53 @@
   gap: var(--tt-space-6);
 }
 
-.hero__eyebrow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--tt-space-3);
-  color: var(--tt-text);
-  animation: tt-enter-up 700ms var(--tt-ease-out) 200ms both;
+// Brand row: the interactive wordmark spans the container, with a ruled meta line under it
+.hero__brand {
+  position: relative;
+  display: grid;
+  gap: clamp(1rem, 0.6rem + 1.2vw, 1.75rem);
+  margin-bottom: clamp(2.5rem, 1.5rem + 4vw, 5rem);
 }
 
-.hero__eyebrow-rule,
-.hero__eyebrow-place {
+.hero__logo {
+  display: block;
+  width: 100%;
+}
+
+.hero__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--tt-space-4);
+  padding-top: var(--tt-space-4);
+  border-top: 1px solid var(--tt-fg);
+  color: var(--tt-text);
+  animation: tt-enter-fade 800ms var(--tt-ease-out) 900ms both;
+
+  .dot {
+    margin-right: 0.35rem;
+  }
+}
+
+.hero__meta-item {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.hero__meta-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--tt-border);
+}
+
+.hero__meta-place {
   @include bp.down(sm) {
     display: none;
   }
 }
 
-.hero__eyebrow-rule {
-  width: 2rem;
-  height: 1px;
-  background: var(--tt-border-strong);
-}
-
 .hero__title {
-  font-size: clamp(2.75rem, 1rem + 5.4vw, 6.4rem);
+  font-size: clamp(2.4rem, 1rem + 4.2vw, 5.25rem);
 }
 
 // Each headline line rises out of its own mask
@@ -166,7 +157,7 @@
     position: absolute;
     width: 14px;
     height: 14px;
-    border-color: var(--tt-white);
+    border-color: var(--tt-fg);
     border-style: solid;
     border-width: 0;
     animation: tt-enter-fade 600ms var(--tt-ease-out) 1600ms both;
@@ -270,7 +261,7 @@
     }
 
     &.is-active {
-      color: var(--tt-white);
+      color: var(--tt-fg);
 
       &::after {
         transform: scaleX(1);
@@ -375,7 +366,7 @@
     position: absolute;
     width: 7px;
     height: 7px;
-    background: var(--tt-white);
+    background: var(--tt-bg);
     border: 1px solid var(--tt-red);
 
     &--tl {
@@ -463,7 +454,7 @@
 
 .c-tag,
 .c-sel {
-  color: var(--tt-white);
+  color: var(--tt-fg);
   font-weight: 600;
 }
 
@@ -473,7 +464,7 @@
 
 .c-str,
 .c-num {
-  color: var(--tt-red-bright);
+  color: var(--tt-red-strong);
 }
 
 .c-ok {
@@ -488,7 +479,7 @@
   padding: 0.25rem 0.7rem;
   border: 1px solid rgb(var(--tt-accent-rgb) / 0.4);
   border-radius: 999px;
-  color: var(--tt-white);
+  color: var(--tt-fg);
 
   .dot {
     box-shadow: 0 0 0 4px var(--tt-red-soft);
@@ -528,7 +519,7 @@
     transition: color var(--tt-dur-hover);
 
     &.is-active {
-      color: var(--tt-white);
+      color: var(--tt-fg);
 
       .hero__phase-num {
         color: var(--tt-red);

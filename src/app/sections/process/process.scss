@@ -58,7 +58,7 @@
 
   &__total {
     padding-bottom: 0.6rem;
-    color: var(--tt-white);
+    color: var(--tt-fg);
   }
 }
 
@@ -120,7 +120,7 @@
     }
 
     .is-active & {
-      background: var(--tt-white);
+      background: var(--tt-fg);
       box-shadow:
         0 0 0 3px var(--tt-red),
         0 0 0 8px var(--tt-red-soft);

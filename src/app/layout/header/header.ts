@@ -12,11 +12,12 @@ import {
 import { BRAND, NAV_ITEMS } from '../../core/content';
 import { ContrastService } from '../../shared/contrast.service';
 import { Icon } from '../../shared/icon';
+import { Logo } from '../../shared/logo/logo';
 import { ScrollService } from '../../shared/scroll.service';
 
 @Component({
   selector: 'tt-header',
-  imports: [Icon],
+  imports: [Icon, Logo],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   host: {

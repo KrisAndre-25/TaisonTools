@@ -105,7 +105,7 @@
   left: var(--tt-space-4);
   padding: 0.35rem 0.7rem;
   border-radius: var(--tt-radius-pill);
-  background: var(--tt-white);
+  background: var(--tt-fg);
   color: var(--tt-bg);
 }
 
@@ -172,7 +172,7 @@
     display: inline-flex;
     align-items: center;
     gap: var(--tt-space-3);
-    color: var(--tt-white);
+    color: var(--tt-fg);
     font-weight: 500;
   }
 
@@ -193,7 +193,7 @@
     background: rgb(var(--tt-accent-rgb) / 0.04);
 
     .slot__title {
-      color: var(--tt-white);
+      color: var(--tt-fg);
     }
 
     .slot__arrow {

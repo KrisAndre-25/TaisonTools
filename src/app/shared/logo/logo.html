@@ -1,0 +1,32 @@
+<svg
+  #svg
+  class="logo"
+  xmlns="http://www.w3.org/2000/svg"
+  [attr.viewBox]="viewBox"
+  [attr.role]="label() ? 'img' : null"
+  [attr.aria-label]="label() || null"
+  [attr.aria-hidden]="label() ? null : 'true'"
+  focusable="false"
+>
+  <g [attr.transform]="pathTransform">
+    <path class="logo__part logo__part--taison" [attr.d]="paths.taison" />
+    <path class="logo__part logo__part--t" [attr.d]="paths.t" />
+    <path class="logo__part logo__part--ols" [attr.d]="paths.ols" />
+  </g>
+  <circle
+    class="logo__ring"
+    [attr.cx]="ring.cx"
+    [attr.cy]="ring.cy"
+    [attr.r]="ring.r"
+    [attr.stroke-width]="ring.stroke"
+    [attr.transform]="'rotate(-90 ' + ring.cx + ' ' + ring.cy + ')'"
+    pathLength="1"
+  />
+  <!-- Outer group follows the pointer, inner group runs the entrance; the path keeps
+       its own potrace transform, which a CSS transform on the same element would replace. -->
+  <g class="logo__wrench" [style.transform]="'rotate(' + angle() + 'deg)'">
+    <g class="logo__wrench-intro">
+      <path [attr.transform]="pathTransform" [attr.d]="paths.wrench" />
+    </g>
+  </g>
+</svg>

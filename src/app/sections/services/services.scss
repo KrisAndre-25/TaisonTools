@@ -70,7 +70,7 @@
     transform var(--tt-dur-hover) var(--tt-ease-out);
 
   .is-open & {
-    color: var(--tt-white);
+    color: var(--tt-fg);
     transform: translateX(6px);
   }
 }
@@ -111,8 +111,8 @@
 
   .is-open & {
     transform: rotate(45deg);
-    background: var(--tt-white);
-    border-color: var(--tt-white);
+    background: var(--tt-fg);
+    border-color: var(--tt-fg);
     color: var(--tt-bg);
   }
 }

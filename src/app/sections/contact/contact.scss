@@ -6,9 +6,7 @@
 
 .contact {
   border-top: 1px solid var(--tt-border);
-  background:
-    radial-gradient(ellipse 60% 50% at 15% 0%, rgb(var(--tt-accent-rgb) / 0.08), transparent 70%),
-    var(--tt-bg-2);
+  background: var(--tt-bg-2);
 }
 
 .contact__meta {
@@ -20,7 +18,7 @@
 .contact__rule {
   width: 2.5rem;
   height: 1px;
-  background: var(--tt-white);
+  background: var(--tt-fg);
 }
 
 .contact__title {
@@ -34,7 +32,7 @@
 }
 
 .contact__line--accent {
-  color: var(--tt-white);
+  color: var(--tt-fg);
 }
 
 .contact__layout {
@@ -66,7 +64,7 @@
   }
 
   dd {
-    color: var(--tt-white);
+    color: var(--tt-fg);
   }
 }
 
@@ -101,7 +99,7 @@
     border-bottom: 1px solid var(--tt-border-strong);
     border-radius: 0;
     background: transparent;
-    color: var(--tt-white);
+    color: var(--tt-fg);
     font-size: 1.05rem;
     transition: border-color var(--tt-dur-micro);
 
@@ -126,11 +124,11 @@
   }
 
   &.has-error .field__input {
-    border-color: var(--tt-red-bright);
+    border-color: var(--tt-red-strong);
   }
 
   &__error {
-    color: var(--tt-red-bright);
+    color: var(--tt-red-strong);
     font-size: var(--tt-fs-sm);
   }
 }
@@ -169,18 +167,18 @@
   }
 
   &:hover span {
-    color: var(--tt-white);
+    color: var(--tt-fg);
     border-color: var(--tt-muted);
   }
 
   input:checked + span {
-    background: var(--tt-white);
-    border-color: var(--tt-white);
+    background: var(--tt-fg);
+    border-color: var(--tt-fg);
     color: var(--tt-bg);
   }
 
   input:focus-visible + span {
-    outline: 2px solid var(--tt-red-bright);
+    outline: 2px solid var(--tt-red-strong);
     outline-offset: 3px;
   }
 }

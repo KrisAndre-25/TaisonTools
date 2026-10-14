@@ -1,6 +1,6 @@
 .btn {
   --btn-bg: transparent;
-  --btn-fg: var(--tt-white);
+  --btn-fg: var(--tt-fg);
   --btn-border: var(--tt-border-strong);
 
   position: relative;
@@ -32,7 +32,7 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: var(--btn-fill, var(--tt-white));
+    background: var(--btn-fill, var(--tt-fg));
     transform: translateY(101%);
     transition: transform var(--tt-dur-hover) var(--tt-ease-out);
   }
@@ -48,7 +48,7 @@
     &:hover {
       transform: translateY(-2px);
       color: var(--btn-fg-hover, var(--tt-bg));
-      border-color: var(--btn-fill, var(--tt-white));
+      border-color: var(--btn-fill, var(--tt-fg));
 
       &::before {
         transform: translateY(0);
@@ -68,12 +68,12 @@
     --btn-fg: var(--tt-on-accent);
     --btn-bg: var(--tt-red);
     --btn-border: var(--tt-red);
-    --btn-fill: var(--tt-white);
+    --btn-fill: var(--tt-fg);
     --btn-fg-hover: var(--tt-bg);
   }
 
   &--ghost {
-    --btn-fill: var(--tt-white);
+    --btn-fill: var(--tt-fg);
   }
 
   &--block {
@@ -87,7 +87,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--tt-space-2);
-  color: var(--tt-white);
+  color: var(--tt-fg);
 
   &::after {
     content: '';

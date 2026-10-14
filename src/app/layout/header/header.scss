@@ -24,7 +24,7 @@
   inset: 0;
   z-index: 1;
   height: var(--tt-header-h);
-  background: rgba(5, 5, 5, 0.72);
+  background: rgb(var(--tt-bg-rgb) / 0.85);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   border-bottom: 1px solid var(--tt-border);
@@ -43,53 +43,11 @@
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
+  min-height: 44px;
   margin-right: auto;
-  color: var(--tt-white);
 
-  &__mark {
-    position: relative;
-    width: 18px;
-    height: 18px;
-
-    span {
-      position: absolute;
-      background: var(--tt-white);
-      transition: transform var(--tt-dur-hover) var(--tt-ease-out);
-    }
-
-    span:first-child {
-      inset: 0 0 auto;
-      height: 5px;
-    }
-
-    span:last-child {
-      left: 6.5px;
-      top: 0;
-      width: 5px;
-      height: 100%;
-      background: var(--tt-red);
-    }
-  }
-
-  &:hover &__mark span:first-child {
-    transform: translateY(13px);
-  }
-
-  &__word {
-    font-weight: 600;
-    font-size: 0.95rem;
-    letter-spacing: 0.12em;
-
-    b {
-      font-weight: 600;
-      color: var(--tt-muted);
-      transition: color var(--tt-dur-hover);
-    }
-  }
-
-  &:hover &__word b {
-    color: var(--tt-white);
+  &__logo {
+    width: clamp(132px, 110px + 4vw, 176px);
   }
 }
 
@@ -129,7 +87,7 @@
 
     &:hover,
     &.is-active {
-      color: var(--tt-white);
+      color: var(--tt-fg);
     }
 
     &:hover::after,
@@ -151,7 +109,7 @@
   padding: 0 0.85rem;
   border: 1px solid var(--tt-border-strong);
   border-radius: var(--tt-radius-pill);
-  color: var(--tt-white);
+  color: var(--tt-fg);
   font-family: var(--tt-font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.12em;
@@ -166,7 +124,7 @@
   }
 
   &:hover {
-    border-color: var(--tt-white);
+    border-color: var(--tt-fg);
 
     tt-icon {
       transform: rotate(180deg);
@@ -174,8 +132,8 @@
   }
 
   &[aria-pressed='true'] {
-    background: var(--tt-white);
-    border-color: var(--tt-white);
+    background: var(--tt-fg);
+    border-color: var(--tt-fg);
     color: var(--tt-bg);
   }
 
@@ -198,7 +156,7 @@
   top: calc(var(--tt-header-h) - 1px);
   z-index: 2;
   height: 1px;
-  background: var(--tt-white);
+  background: var(--tt-fg);
   transform: scaleX(0);
   transform-origin: left;
   opacity: 0;
@@ -241,7 +199,7 @@
     display: block;
     width: 24px;
     height: 1.5px;
-    background: var(--tt-white);
+    background: var(--tt-fg);
     transition: transform var(--tt-dur-hover) var(--tt-ease-out);
   }
 
@@ -317,7 +275,7 @@
     font-weight: 600;
     letter-spacing: -0.035em;
     line-height: 1.1;
-    color: var(--tt-white);
+    color: var(--tt-fg);
 
     &.is-active .menu__index {
       color: var(--tt-red);

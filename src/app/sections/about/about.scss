@@ -27,7 +27,7 @@
   }
 
   &__term--result {
-    color: var(--tt-white);
+    color: var(--tt-fg);
   }
 }
 
@@ -59,7 +59,7 @@
     border-color: var(--tt-border-strong);
 
     .person__initials {
-      color: var(--tt-white);
+      color: var(--tt-fg);
     }
 
     .person__mark::before {
@@ -77,8 +77,8 @@
     padding: var(--tt-space-5);
     border-bottom: 1px solid var(--tt-border);
     background:
-      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 24px 24px,
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 24px 24px,
+      linear-gradient(to right, rgb(var(--tt-ink-rgb) / 0.04) 1px, transparent 1px) 0 0 / 24px 24px,
+      linear-gradient(to bottom, rgb(var(--tt-ink-rgb) / 0.04) 1px, transparent 1px) 0 0 / 24px 24px,
       var(--tt-bg-2);
 
     @include bp.up(xl) {
@@ -106,7 +106,7 @@
     font-weight: 500;
     letter-spacing: -0.06em;
     line-height: 1;
-    color: var(--tt-white);
+    color: var(--tt-fg);
     transition: color var(--tt-dur-hover);
   }
 

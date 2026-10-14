@@ -9,7 +9,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--tt-header-h) + 1rem);
   background: var(--tt-bg);
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
@@ -81,7 +81,7 @@ dd {
 }
 
 :focus-visible {
-  outline: 2px solid var(--tt-red-bright);
+  outline: 2px solid var(--tt-red-strong);
   outline-offset: 3px;
   border-radius: 2px;
 }

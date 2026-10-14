@@ -6,9 +6,7 @@
 
 .duo {
   border-top: 1px solid var(--tt-border);
-  background:
-    radial-gradient(ellipse 50% 40% at 50% 45%, rgb(var(--tt-accent-rgb) / 0.06), transparent 70%),
-    var(--tt-bg-2);
+  background: var(--tt-bg-2);
 }
 
 .duo__meta {
@@ -21,7 +19,7 @@
 .duo__rule {
   width: 2.5rem;
   height: 1px;
-  background: var(--tt-white);
+  background: var(--tt-fg);
 }
 
 .duo__title {
@@ -35,7 +33,7 @@
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: 0.95;
-  color: var(--tt-white);
+  color: var(--tt-fg);
   text-align: center;
 
   @include bp.down(sm) {
@@ -135,7 +133,7 @@
   &__person {
     font-size: 1.15rem;
     font-weight: 600;
-    color: var(--tt-white);
+    color: var(--tt-fg);
   }
 
   &__note {
@@ -192,7 +190,7 @@
     place-items: center;
     width: 56px;
     height: 56px;
-    border: 1px solid var(--tt-white);
+    border: 1px solid var(--tt-fg);
     border-radius: 50%;
     background: var(--tt-bg-2);
     box-shadow:
@@ -250,7 +248,7 @@
       left: 0;
       width: 24px;
       height: 1px;
-      background: var(--tt-white);
+      background: var(--tt-fg);
     }
 
     & + &::before {

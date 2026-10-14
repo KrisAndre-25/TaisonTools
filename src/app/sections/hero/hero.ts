@@ -8,6 +8,7 @@ import {
   signal,
 } from '@angular/core';
 import { Icon } from '../../shared/icon';
+import { Logo } from '../../shared/logo/logo';
 import { ScrollService } from '../../shared/scroll.service';
 import { ViewportService } from '../../shared/viewport.service';
 
@@ -22,7 +23,7 @@ const PHASE_MS = 3600;
 
 @Component({
   selector: 'tt-hero',
-  imports: [Icon],
+  imports: [Icon, Logo],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
 })

@@ -5,9 +5,8 @@
   place-items: center;
   padding: 8%;
   background:
-    radial-gradient(circle at 70% 20%, rgb(var(--tt-accent-rgb) / 0.12), transparent 50%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 40px 40px,
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(to right, rgb(var(--tt-ink-rgb) / 0.04) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(to bottom, rgb(var(--tt-ink-rgb) / 0.04) 1px, transparent 1px) 0 0 / 40px 40px,
     var(--tt-surface);
 }
 
@@ -145,7 +144,7 @@
   &__title {
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--tt-white);
+    color: var(--tt-fg);
   }
 
   &__cta {
@@ -192,7 +191,7 @@
   }
 
   .is-now {
-    color: var(--tt-white);
+    color: var(--tt-fg);
 
     span {
       background: var(--tt-red);
@@ -209,7 +208,7 @@
   height: auto;
 
   &__links path {
-    stroke: rgba(255, 255, 255, 0.22);
+    stroke: rgb(var(--tt-ink-rgb) / 0.22);
     stroke-width: 1.2;
   }
 
@@ -221,7 +220,7 @@
 
   &__nodes rect {
     fill: var(--tt-bg);
-    stroke: rgba(255, 255, 255, 0.28);
+    stroke: rgb(var(--tt-ink-rgb) / 0.28);
   }
 
   &__core {
