@@ -15,7 +15,7 @@ export class Footer {
 
   protected readonly brand = BRAND;
   protected readonly links = NAV_ITEMS.filter((item) =>
-    ['servicios', 'proyectos', 'nosotros', 'contacto'].includes(item.id),
+    ['servicios', 'proceso', 'proyectos', 'nosotros', 'contacto'].includes(item.id),
   );
   protected readonly year = new Date().getFullYear();
 
