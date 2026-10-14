@@ -30,12 +30,14 @@
       type="button"
       class="contrast"
       [attr.aria-pressed]="contrast.high()"
-      [attr.title]="contrast.high() ? 'Desactivar alto contraste' : 'Activar alto contraste'"
+      [attr.title]="
+        contrast.high() ? 'Volver al modo claro' : 'Cambiar a modo oscuro de alto contraste'
+      "
       (click)="contrast.toggle()"
     >
       <tt-icon name="contrast" />
       <span class="contrast__label">Contraste</span>
-      <span class="visually-hidden">Modo de alto contraste</span>
+      <span class="visually-hidden">Modo oscuro de alto contraste</span>
     </button>
 
     <a

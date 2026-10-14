@@ -99,3 +99,10 @@
     clip-path: none;
   }
 }
+
+// Contrast toggle cross-fade (View Transitions API)
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 420ms;
+  animation-timing-function: var(--tt-ease-out);
+}

@@ -122,31 +122,58 @@
   color-scheme: dark;
 }
 
-// High-contrast mode (header toggle, or OS "increase contrast"): pure black and white,
-// darker greys and stronger lines.
+// Contrast mode (header toggle, or OS "increase contrast"): the white page turns black.
+// White ink on black, lighter greys for legibility, stronger lines. Sections that are
+// already dark (.theme-dark) lift to a dark grey so the alternating rhythm survives.
 :root[data-contrast='high'] {
-  --tt-bg: #ffffff;
-  --tt-bg-rgb: 255 255 255;
-  --tt-accent: #000000;
-  --tt-accent-strong: #000000;
-  --tt-accent-rgb: 0 0 0;
+  --tt-bg: #000000;
+  --tt-bg-rgb: 0 0 0;
+  --tt-bg-2: #000000;
+  --tt-surface: #0d0d0d;
+  --tt-surface-2: #161616;
+  --tt-surface-3: #2a2a2a;
 
-  --tt-fg: #000000;
-  --tt-ink-rgb: 0 0 0;
-  --tt-text: #000000;
-  --tt-muted: #262626;
-  --tt-subtle: #404040;
+  --tt-accent: #ffffff;
+  --tt-accent-strong: #ffffff;
+  --tt-accent-rgb: 255 255 255;
+  --tt-accent-soft: rgb(255 255 255 / 0.16);
+  --tt-on-accent: #000000;
 
-  --tt-border: rgb(0 0 0 / 0.3);
-  --tt-border-strong: rgb(0 0 0 / 0.6);
+  --tt-fg: #ffffff;
+  --tt-ink-rgb: 255 255 255;
+  --tt-text: #ffffff;
+  --tt-muted: #d6d6d6;
+  --tt-subtle: #b8b8b8;
+
+  --tt-border: rgb(255 255 255 / 0.24);
+  --tt-border-strong: rgb(255 255 255 / 0.5);
+
+  --tt-pattern-c1: #050505;
+  --tt-pattern-c2: #151515;
+  --tt-pattern-c3: #2a2a2a;
+
+  --tt-shadow-sm: 0 8px 24px rgb(0 0 0 / 0.6);
+  --tt-shadow-md: 0 0 0 1px rgb(255 255 255 / 0.06), 0 24px 60px rgb(0 0 0 / 0.7);
+
+  color-scheme: dark;
 }
 
 :root[data-contrast='high'] .theme-dark {
-  --tt-bg: #000000;
+  --tt-bg: #141414;
+  --tt-bg-rgb: 20 20 20;
+  --tt-bg-2: #141414;
+  --tt-surface: #1c1c1c;
+  --tt-surface-2: #242424;
+  --tt-surface-3: #333333;
+
   --tt-text: #ffffff;
   --tt-muted: #dcdcdc;
   --tt-subtle: #c2c2c2;
 
-  --tt-border: rgb(255 255 255 / 0.32);
-  --tt-border-strong: rgb(255 255 255 / 0.6);
+  --tt-border: rgb(255 255 255 / 0.26);
+  --tt-border-strong: rgb(255 255 255 / 0.55);
+
+  --tt-pattern-c1: #121212;
+  --tt-pattern-c2: #222222;
+  --tt-pattern-c3: #363636;
 }
