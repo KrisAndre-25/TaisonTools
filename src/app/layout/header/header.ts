@@ -74,9 +74,14 @@ export class Header {
       });
     });
 
-    // Lock page scroll while the mobile menu is open.
+    // Lock page scroll while the mobile menu is open, and make the page behind it inert so
+    // keyboard and screen reader focus stays inside the menu and the header bar.
     effect(() => {
-      this.document.body.classList.toggle('is-locked', this.menuOpen());
+      const open = this.menuOpen();
+      this.document.body.classList.toggle('is-locked', open);
+      this.document
+        .querySelectorAll('main, tt-footer')
+        .forEach((el) => el.toggleAttribute('inert', open));
     });
   }
 

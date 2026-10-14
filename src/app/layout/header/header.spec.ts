@@ -22,6 +22,22 @@ describe('Header', () => {
     expect(document.body.classList.contains('is-locked')).toBe(false);
   });
 
+  it('makes the page behind the open mobile menu inert', async () => {
+    const main = document.body.appendChild(document.createElement('main'));
+    const fixture = TestBed.createComponent(Header);
+    await fixture.whenStable();
+    const toggle = (fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('.toggle')!;
+
+    toggle.click();
+    await fixture.whenStable();
+    expect(main.hasAttribute('inert')).toBe(true);
+
+    toggle.click();
+    await fixture.whenStable();
+    expect(main.hasAttribute('inert')).toBe(false);
+    main.remove();
+  });
+
   it('lists the six sections in order', async () => {
     const fixture = TestBed.createComponent(Header);
     await fixture.whenStable();
