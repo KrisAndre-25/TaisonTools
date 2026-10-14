@@ -29,7 +29,9 @@
 // overflow the tight display line-height; a 0 inset would cut them off.
 [data-reveal='clip'] {
   opacity: 1;
-  clip-path: inset(-0.35em -0.25em 100% -0.25em);
+  // Hidden state: the bottom inset also covers the 0.35em of headroom above the box, where
+  // capital accents (É, Ó) sit, so nothing peeks out before the reveal.
+  clip-path: inset(-0.35em -0.25em calc(100% + 0.35em) -0.25em);
   transform: translate3d(0, 12px, 0);
 }
 
