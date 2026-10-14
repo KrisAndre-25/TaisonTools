@@ -27,12 +27,14 @@
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: center;
-  gap: 0 0.25em;
+  // 20px between the two lines so the tilde of the capital Ñ (DISEÑO) clears the line above.
+  gap: 20px 0.25em;
   margin-top: var(--tt-space-5);
   font-size: clamp(2.6rem, 0.8rem + 7.6vw, 9rem);
   font-weight: 600;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
   line-height: 0.95;
+  text-transform: uppercase;
   color: var(--tt-fg);
   text-align: center;
 
