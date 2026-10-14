@@ -1,32 +1,46 @@
-<section id="inicio" class="hero has-pattern" aria-labelledby="hero-title">
-  <div class="tt-pattern" aria-hidden="true"></div>
+<section id="inicio" class="hero" aria-labelledby="hero-title">
+  <!-- Full-screen brand: the wordmark over the interactive honeycomb -->
+  <div class="hero__stage">
+    <div class="hero__media" aria-hidden="true">
+      <tt-hex-field class="hero__field" />
+    </div>
 
-  <div class="hero__brand container">
-    <tt-logo class="hero__logo" [interactive]="true" label="TaisonTools" />
-    <p class="hero__meta t-label">
-      <span class="hero__meta-item"><span class="dot"></span> Engineering × Design</span>
-      <span class="hero__meta-rule" aria-hidden="true"></span>
-      <span class="hero__meta-item hero__meta-place">Santiago, Chile</span>
-    </p>
+    <div class="hero__brand container">
+      <tt-logo class="hero__logo" [interactive]="true" label="TaisonTools" />
+      <p class="hero__meta t-label">
+        <span class="hero__roles">
+          <span>Desarrollo</span>
+          <span class="hero__roles-amp">&amp;</span>
+          <span class="hero__roles-last">Diseño UX/UI</span>
+        </span>
+      </p>
+    </div>
+
+    <a
+      class="hero__down"
+      [class.is-away]="away()"
+      href="#intro"
+      aria-label="Bajar a la siguiente sección"
+      (click)="navigate($event, 'intro')"
+    >
+      <tt-icon name="arrow-down" />
+    </a>
   </div>
 
-  <div class="hero__inner container">
+  <!-- Second screen: fills the viewport under the header, so only this copy is in view -->
+  <div id="intro" class="hero__inner container">
     <div class="hero__copy">
       <h1 id="hero-title" class="hero__title t-display">
-        <span class="hero__line"><span>Donde el código</span></span>
-        <span class="hero__line"><span>y el diseño</span></span>
-        <span class="hero__line"
-          ><span>trabajan juntos<span class="t-accent">.</span></span></span
-        >
+        <tt-staggered-text text="Donde el código y el diseño trabajan juntos" accent="." by="word" />
       </h1>
 
-      <p class="hero__lead t-lead">
+      <p class="hero__lead t-lead" ttReveal [revealDelay]="120">
         TaisonTools es un estudio formado por un desarrollador full-stack y un diseñador UX/UI.
         Creamos sitios, aplicaciones y software a medida donde cada pantalla se piensa y se
         construye en conjunto.
       </p>
 
-      <div class="hero__actions">
+      <div class="hero__actions" ttReveal [revealDelay]="220">
         <a class="btn-ink" href="#contacto" (click)="navigate($event, 'contacto')">
           <span class="btn-ink__clip"><span class="btn-ink__text">Hablemos</span></span>
         </a>
@@ -35,116 +49,5 @@
         </a>
       </div>
     </div>
-
-    <!-- The same element, from design file to production -->
-    <div class="spec-wrap">
-      <span class="spec-wrap__corner spec-wrap__corner--tl" aria-hidden="true"></span>
-      <span class="spec-wrap__corner spec-wrap__corner--tr" aria-hidden="true"></span>
-      <span class="spec-wrap__corner spec-wrap__corner--bl" aria-hidden="true"></span>
-      <span class="spec-wrap__corner spec-wrap__corner--br" aria-hidden="true"></span>
-      <figure class="spec" aria-label="Un mismo componente diseñado, programado y publicado">
-        <div class="spec__head">
-          <span class="t-label">cta / hablemos</span>
-          <span class="spec__status t-label">
-            <span class="dot" [class.is-live]="phase() === 2"></span>
-            {{ phases[phase()].caption }}
-          </span>
-        </div>
-
-        <div class="spec__tabs" role="group" aria-label="Fase">
-          @for (p of phases; track p.key; let i = $index) {
-            <button
-              type="button"
-              class="spec__tab t-label"
-              [class.is-active]="phase() === i"
-              [attr.aria-pressed]="phase() === i"
-              (click)="select(i)"
-            >
-              <span class="t-dim">{{ p.number }}</span> {{ p.label }}
-            </button>
-          }
-        </div>
-
-        <div class="spec__stage" [attr.data-phase]="phases[phase()].key">
-          <!-- 01 Design -->
-          <div class="layer layer--design" [class.is-active]="phase() === 0" aria-hidden="true">
-            <div class="wire">
-              <span class="wire__bar wire__bar--lg"></span>
-              <span class="wire__bar wire__bar--md"></span>
-              <span class="wire__bar wire__bar--sm"></span>
-              <div class="wire__target">
-                <span class="wire__btn">HABLEMOS</span>
-                <span class="wire__handle wire__handle--tl"></span>
-                <span class="wire__handle wire__handle--tr"></span>
-                <span class="wire__handle wire__handle--bl"></span>
-                <span class="wire__handle wire__handle--br"></span>
-                <span class="wire__measure t-mono">168 × 52</span>
-              </div>
-            </div>
-            <dl class="props t-mono">
-              <div>
-                <dt>fill</dt>
-                <dd><i class="swatch"></i>#0A0A0A</dd>
-              </div>
-              <div>
-                <dt>radius</dt>
-                <dd>999</dd>
-              </div>
-              <div>
-                <dt>font</dt>
-                <dd>Inter Tight 800</dd>
-              </div>
-            </dl>
-          </div>
-
-          <!-- 02 Develop -->
-          <pre
-            class="layer layer--code t-mono"
-            [class.is-active]="phase() === 1"
-            aria-hidden="true"
-          ><code><span class="c-dim">01</span>  <span class="c-tag">&lt;a</span> <span class="c-attr">class</span>=<span class="c-str">"btn-ink"</span><span class="c-tag">&gt;</span>
-<span class="c-dim">02</span>    Hablemos
-<span class="c-dim">03</span>  <span class="c-tag">&lt;/a&gt;</span>
-<span class="c-dim">04</span>
-<span class="c-dim">05</span>  <span class="c-sel">.btn-ink</span> &#123;
-<span class="c-dim">06</span>    <span class="c-attr">background</span>: <span class="c-str">var(--tt-fg)</span>;
-<span class="c-dim">07</span>    <span class="c-attr">border-radius</span>: <span class="c-num">999px</span>;
-<span class="c-dim">08</span>  &#125;</code></pre>
-
-          <!-- 03 Deploy -->
-          <div
-            class="layer layer--deploy t-mono"
-            [class.is-active]="phase() === 2"
-            aria-hidden="true"
-          >
-            <p><span class="c-dim">$</span> ng build</p>
-            <p class="c-ok">✓ 0 errores · 0 advertencias</p>
-            <p><span class="c-dim">$</span> ng test</p>
-            <p class="c-ok">✓ pruebas aprobadas</p>
-            <p><span class="c-dim">$</span> deploy --prod</p>
-            <p class="deploy__live"><span class="dot"></span> En línea</p>
-          </div>
-        </div>
-
-        @if (autoplay()) {
-          @for (p of [phase()]; track p) {
-            <span class="spec__progress" aria-hidden="true"></span>
-          }
-        }
-      </figure>
-    </div>
-  </div>
-
-  <div class="hero__foot container">
-    <ol class="hero__phases" aria-label="Cómo trabajamos">
-      @for (p of phases; track p.key; let i = $index) {
-        <li class="t-label" [class.is-active]="phase() === i">
-          <span class="hero__phase-num">{{ p.number }}</span> / {{ p.label }}
-        </li>
-      }
-    </ol>
-    <a class="hero__scroll t-label" href="#servicios" (click)="navigate($event, 'servicios')">
-      Scroll <tt-icon name="arrow-down" />
-    </a>
   </div>
 </section>

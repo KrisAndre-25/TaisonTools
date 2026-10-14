@@ -6,38 +6,49 @@
 
 .hero {
   position: relative;
+}
+
+// ------------------------------------------------------------------ full-screen brand
+.hero__stage {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
   min-height: 100svh;
-  padding-top: calc(var(--tt-header-h) + clamp(1.5rem, 0.5rem + 4vh, 4rem));
+  padding-top: var(--tt-header-h);
   padding-bottom: var(--tt-space-5);
   overflow: hidden;
 }
 
-.hero__inner {
-  position: relative;
-  flex: 1;
-  display: grid;
-  align-items: center;
-  gap: var(--tt-space-8);
+// Interactive honeycomb behind the wordmark. A veil in the page colour keeps the logo
+// and subtitle legible, and fades the field into the page at the bottom edge.
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
 
-  @include bp.up(lg) {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    gap: var(--tt-space-7);
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgb(var(--tt-bg-rgb) / 0) 55%, var(--tt-bg) 100%),
+      rgb(var(--tt-bg-rgb) / 0.18);
   }
 }
 
-.hero__copy {
-  display: grid;
-  gap: var(--tt-space-6);
+.hero__field {
+  animation: tt-enter-fade 1200ms var(--tt-ease-out) both;
 }
 
-// Brand row: the interactive wordmark spans the container, with a ruled meta line under it
+// Brand row: the interactive wordmark spans the container, with the roles subtitle under it
 .hero__brand {
   position: relative;
   display: grid;
   gap: clamp(1rem, 0.6rem + 1.2vw, 1.75rem);
-  margin-bottom: clamp(2.5rem, 1.5rem + 4vw, 5rem);
 }
 
 .hero__logo {
@@ -52,491 +63,159 @@
   padding-top: var(--tt-space-4);
   border-top: 1px solid var(--tt-fg);
   color: var(--tt-text);
+  container-type: inline-size;
   animation: tt-enter-fade 800ms var(--tt-ease-out) 900ms both;
-
-  .dot {
-    margin-right: 0.35rem;
-  }
 }
 
-.hero__meta-item {
-  display: inline-flex;
+// The two roles read as the hero's subtitle. They are justified to span the word
+// TAISON exactly — from the left edge of its T to the right edge of its N, i.e.
+// 0.18% → 56.23% of the wordmark's width (see LOGO_PATHS.taison) — and their size
+// follows the logo's width (cqi), so the fit holds at every breakpoint.
+// Phones lack the room, so there they run the full width of the logo instead.
+.hero__roles {
+  display: flex;
+  flex: none;
   align-items: center;
+  justify-content: space-between;
+  width: 99.82%;
+  margin-left: 0.18%;
+  color: var(--tt-fg);
+  font-family: var(--tt-font-sans);
+  font-size: clamp(1rem, 2.4cqi, 2.25rem);
+  font-weight: 600;
+  // Wide tracking fills the span of TAISON with the words themselves, leaving a gap of
+  // about 1em on each side of the &. Both gaps include one trailing letter-space (after
+  // the last O, after the &), so they stay symmetric.
+  letter-spacing: 0.35em;
+  line-height: 1.1;
   white-space: nowrap;
 
-  // The badge wraps on phones instead of pushing the page wider
-  @include bp.down(sm) {
-    white-space: normal;
+  @include bp.up(md) {
+    width: 56.05%;
   }
 }
 
-.hero__meta-rule {
-  flex: 1;
-  height: 1px;
-  background: var(--tt-border);
+// The & gives a brief full turn, then rests, on a constant loop.
+.hero__roles-amp {
+  display: inline-block;
+  color: var(--tt-subtle);
+  font-weight: 400;
+  animation: hero-roles-spin 4s var(--tt-ease-in-out) 1.8s infinite;
 }
 
-.hero__meta-place {
-  @include bp.down(sm) {
-    display: none;
+@keyframes hero-roles-spin {
+  0% {
+    transform: rotate(0);
+  }
+  30%,
+  100% {
+    transform: rotate(360deg);
   }
 }
 
+@include bp.reduced-motion {
+  .hero__roles-amp {
+    animation: none;
+  }
+}
+
+// Letter-spacing also trails the last letter; cancel it so the "I" ends flush with the N.
+.hero__roles-last {
+  margin-right: -0.35em;
+}
+
+// Round "scroll down" button, centred at the foot of the full-screen brand. Frosted
+// over the honeycomb; inverts to solid ink on hover while the arrow nudges down.
+.hero__down {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.5rem, 1rem + 2vh, 3rem);
+  translate: -50% 0;
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  border: 1px solid var(--tt-border-strong);
+  border-radius: 50%;
+  background: rgb(var(--tt-bg-rgb) / 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--tt-fg);
+  font-size: 1.5rem;
+  animation: tt-enter-fade 900ms var(--tt-ease-out) 1300ms both;
+  transition:
+    opacity var(--tt-dur-hover) var(--tt-ease-out),
+    background var(--tt-dur-hover) var(--tt-ease-out),
+    color var(--tt-dur-hover) var(--tt-ease-out),
+    border-color var(--tt-dur-hover) var(--tt-ease-out);
+
+  tt-icon {
+    transition: transform var(--tt-dur-hover) var(--tt-ease-out);
+  }
+
+  // Once the visitor has scrolled down, it fades so it never ghosts behind the header.
+  // (The entrance animation is dropped here: its fill would otherwise pin opacity at 1.)
+  &.is-away {
+    animation: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &:hover {
+    background: var(--tt-fg);
+    border-color: var(--tt-fg);
+    color: var(--tt-bg);
+
+    tt-icon {
+      transform: translateY(3px);
+    }
+  }
+
+  @include bp.down(md) {
+    width: 64px;
+    height: 64px;
+    font-size: 1.25rem;
+  }
+}
+
+// ------------------------------------------------------------------ intro copy
+// A full screen of its own: exactly the height left under the header once the arrow (or
+// scroll-padding) has parked it there, with the copy centred — nothing of Servicios shows.
+.hero__inner {
+  display: grid;
+  align-content: center;
+  min-height: calc(100vh - var(--tt-header-h) - 1rem);
+  min-height: calc(100svh - var(--tt-header-h) - 1rem);
+  padding-block: var(--tt-space-7);
+}
+
+.hero__copy {
+  display: grid;
+  gap: clamp(1.5rem, 1rem + 1.5vw, 2.5rem);
+  max-width: 78rem;
+}
+
+// Big enough to own the screen: grows with the width, but is also capped by the height
+// so the whole block still fits in one viewport on short or wide screens.
 .hero__title {
-  font-size: clamp(2.4rem, 1rem + 4.2vw, 5.25rem);
-}
-
-// Each headline line rises out of its own mask
-// Padding inside the mask keeps accents and descenders visible; the negative
-// margin cancels it so the line spacing stays the same.
-.hero__line {
-  display: block;
-  overflow: hidden;
-  padding-block: 0.12em 0.2em;
-  margin-block: -0.12em -0.2em;
-
-  > span {
-    display: block;
-    animation: tt-line-rise 900ms var(--tt-ease-out) both;
-  }
-
-  &:nth-child(1) > span {
-    animation-delay: 300ms;
-  }
-
-  &:nth-child(2) > span {
-    animation-delay: 400ms;
-  }
-
-  &:nth-child(3) > span {
-    animation-delay: 500ms;
-  }
+  font-size: min(clamp(3rem, 1rem + 6vw, 7.5rem), 11vh);
+  // Room for capital accents (Ñ, Ó) between lines.
+  line-height: 1.02;
 }
 
 .hero__lead {
-  animation: tt-enter-up 800ms var(--tt-ease-out) 750ms both;
+  max-width: 48ch;
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.5rem);
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--tt-space-3);
-  animation: tt-enter-up 800ms var(--tt-ease-out) 900ms both;
 
   @include bp.down(sm) {
     .btn {
       flex: 1 1 100%;
     }
-  }
-}
-
-// ------------------------------------------------------------------ spec card
-// Wrapper carries the white selection-corner marks, like a frame selected in a design tool
-.spec-wrap {
-  position: relative;
-  width: 100%;
-  max-width: 480px;
-  justify-self: end;
-  animation: tt-enter-up 900ms var(--tt-ease-out) 1050ms both;
-
-  @include bp.down(lg) {
-    justify-self: stretch;
-    max-width: none;
-  }
-
-  &__corner {
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    border-color: var(--tt-fg);
-    border-style: solid;
-    border-width: 0;
-    animation: tt-enter-fade 600ms var(--tt-ease-out) 1600ms both;
-
-    &--tl {
-      top: -9px;
-      left: -9px;
-      border-top-width: 1px;
-      border-left-width: 1px;
-    }
-
-    &--tr {
-      top: -9px;
-      right: -9px;
-      border-top-width: 1px;
-      border-right-width: 1px;
-    }
-
-    &--bl {
-      bottom: -9px;
-      left: -9px;
-      border-bottom-width: 1px;
-      border-left-width: 1px;
-    }
-
-    &--br {
-      bottom: -9px;
-      right: -9px;
-      border-bottom-width: 1px;
-      border-right-width: 1px;
-    }
-  }
-}
-
-.spec {
-  position: relative;
-  width: 100%;
-  border: 1px solid var(--tt-border-strong);
-  border-radius: var(--tt-radius-md);
-  background: linear-gradient(180deg, var(--tt-surface-2), var(--tt-surface));
-  box-shadow: var(--tt-shadow-md);
-  overflow: hidden;
-
-  &__head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--tt-space-3);
-    padding: 0.9rem 1.1rem;
-    border-bottom: 1px solid var(--tt-border);
-  }
-
-  &__status {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--tt-space-2);
-    color: var(--tt-text);
-
-    .dot {
-      background: var(--tt-subtle);
-      transition: background var(--tt-dur-hover);
-    }
-
-    .dot.is-live {
-      background: var(--tt-accent);
-      box-shadow: 0 0 0 4px var(--tt-accent-soft);
-    }
-  }
-
-  &__tabs {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-bottom: 1px solid var(--tt-border);
-  }
-
-  &__tab {
-    position: relative;
-    min-height: 48px;
-    padding: 0 0.5rem;
-    color: var(--tt-subtle);
-    transition: color var(--tt-dur-micro);
-
-    & + & {
-      border-left: 1px solid var(--tt-border);
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -1px;
-      height: 2px;
-      background: var(--tt-accent);
-      transform: scaleX(0);
-      transition: transform var(--tt-dur-hover) var(--tt-ease-out);
-    }
-
-    &:hover {
-      color: var(--tt-text);
-    }
-
-    &.is-active {
-      color: var(--tt-fg);
-
-      &::after {
-        transform: scaleX(1);
-      }
-    }
-  }
-
-  &__stage {
-    position: relative;
-    height: 280px;
-
-    @include bp.down(sm) {
-      height: 250px;
-    }
-  }
-
-  &__progress {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background: var(--tt-accent);
-    transform-origin: left;
-    animation: tt-draw-x 3600ms linear both;
-    opacity: 0.6;
-  }
-}
-
-.layer {
-  position: absolute;
-  inset: 0;
-  margin: 0;
-  padding: 1.4rem;
-  opacity: 0;
-  transform: translate3d(0, 10px, 0);
-  transition:
-    opacity 450ms var(--tt-ease-out),
-    transform 450ms var(--tt-ease-out);
-  pointer-events: none;
-
-  &.is-active {
-    opacity: 1;
-    transform: none;
-    transition-delay: 120ms;
-  }
-}
-
-// Design layer: wireframe with a selected element
-.layer--design {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  gap: var(--tt-space-4);
-}
-
-.wire {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.6rem;
-
-  &__bar {
-    height: 10px;
-    border-radius: 3px;
-    background: var(--tt-surface-3);
-
-    &--lg {
-      width: 82%;
-      height: 16px;
-    }
-
-    &--md {
-      width: 64%;
-    }
-
-    &--sm {
-      width: 46%;
-      margin-bottom: 0.6rem;
-    }
-  }
-
-  &__target {
-    position: relative;
-    align-self: flex-start;
-    padding: 6px;
-    outline: 1px solid var(--tt-accent);
-  }
-
-  &__btn {
-    display: inline-flex;
-    align-items: center;
-    height: 36px;
-    padding: 0 1rem;
-    border-radius: 999px;
-    background: var(--tt-accent);
-    color: var(--tt-on-accent);
-    font-size: 0.8125rem;
-    font-weight: 500;
-  }
-
-  &__handle {
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    background: var(--tt-bg);
-    border: 1px solid var(--tt-accent);
-
-    &--tl {
-      top: -4px;
-      left: -4px;
-    }
-
-    &--tr {
-      top: -4px;
-      right: -4px;
-    }
-
-    &--bl {
-      bottom: -4px;
-      left: -4px;
-    }
-
-    &--br {
-      bottom: -4px;
-      right: -4px;
-    }
-  }
-
-  &__measure {
-    position: absolute;
-    left: 50%;
-    bottom: -26px;
-    translate: -50% 0;
-    padding: 2px 6px;
-    border-radius: 3px;
-    background: var(--tt-accent);
-    color: var(--tt-on-accent);
-    font-size: 0.8125rem;
-    white-space: nowrap;
-  }
-}
-
-.props {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-content: space-between;
-  gap: var(--tt-space-3);
-  padding-top: var(--tt-space-4);
-  border-top: 1px dashed var(--tt-border-strong);
-  font-size: 0.8125rem;
-
-  dt {
-    color: var(--tt-subtle);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  dd {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    color: var(--tt-text);
-  }
-}
-
-.swatch {
-  width: 9px;
-  height: 9px;
-  border-radius: 2px;
-  background: var(--tt-accent);
-}
-
-// Code + deploy layers
-.layer--code,
-.layer--deploy {
-  font-size: clamp(0.8125rem, 0.78rem + 0.15vw, 0.875rem);
-  line-height: 1.85;
-  color: var(--tt-text);
-  white-space: pre;
-  overflow: hidden;
-}
-
-.layer--deploy {
-  white-space: normal;
-}
-
-.c-dim {
-  color: var(--tt-subtle);
-}
-
-.c-tag,
-.c-sel {
-  color: var(--tt-fg);
-  font-weight: 600;
-}
-
-.c-attr {
-  color: var(--tt-muted);
-}
-
-.c-str,
-.c-num {
-  color: var(--tt-accent-strong);
-}
-
-.c-ok {
-  color: var(--tt-muted);
-}
-
-.deploy__live {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--tt-space-2);
-  margin-top: var(--tt-space-2);
-  padding: 0.25rem 0.7rem;
-  border: 1px solid rgb(var(--tt-accent-rgb) / 0.4);
-  border-radius: 999px;
-  color: var(--tt-fg);
-
-  .dot {
-    box-shadow: 0 0 0 4px var(--tt-accent-soft);
-  }
-}
-
-// ------------------------------------------------------------------ foot
-.hero__foot {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--tt-space-5);
-  margin-top: var(--tt-space-8);
-  padding-top: var(--tt-space-4);
-  animation: tt-enter-fade 900ms var(--tt-ease-out) 1300ms both;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: var(--tt-gutter);
-    right: var(--tt-gutter);
-    height: 1px;
-    background: var(--tt-border);
-    transform-origin: left;
-    animation: tt-draw-x 1000ms var(--tt-ease-out) 1200ms both;
-  }
-}
-
-.hero__phases {
-  display: flex;
-  gap: clamp(1rem, 0.5rem + 2.5vw, 3rem);
-
-  li {
-    color: var(--tt-subtle);
-    transition: color var(--tt-dur-hover);
-
-    &.is-active {
-      color: var(--tt-fg);
-
-      .hero__phase-num {
-        color: var(--tt-accent);
-      }
-    }
-  }
-
-  @include bp.down(sm) {
-    li:not(.is-active) {
-      display: none;
-    }
-  }
-}
-
-.hero__scroll {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--tt-space-2);
-  min-height: 44px;
-  color: var(--tt-text);
-
-  tt-icon {
-    transition: transform var(--tt-dur-hover) var(--tt-ease-out);
-  }
-
-  &:hover tt-icon {
-    transform: translateY(3px);
   }
 }
