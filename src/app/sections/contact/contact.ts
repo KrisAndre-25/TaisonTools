@@ -1,4 +1,12 @@
-import { Component, inject, signal } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Injector,
+  afterNextRender,
+  inject,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BRAND } from '../../core/content';
 import { RevealDirective } from '../../shared/reveal.directive';
@@ -12,6 +20,9 @@ export type ContactStatus = 'idle' | 'invalid' | 'ready';
   styleUrl: './contact.scss',
 })
 export class Contact {
+  private readonly injector = inject(Injector);
+  private readonly sent = viewChild<ElementRef<HTMLElement>>('sent');
+
   protected readonly brand = BRAND;
   protected readonly projectTypes = ['Software', 'Web', 'UX/UI', 'Automatización', 'Otro'] as const;
   protected readonly status = signal<ContactStatus>('idle');
@@ -39,6 +50,8 @@ export class Contact {
       return;
     }
     this.status.set('ready');
+    // The form is replaced by the confirmation: move focus there so it is seen and announced.
+    afterNextRender(() => this.sent()?.nativeElement.focus(), { injector: this.injector });
   }
 
   protected reset(): void {

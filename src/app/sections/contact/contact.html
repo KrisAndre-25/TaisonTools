@@ -124,7 +124,7 @@
           </button>
         </form>
       } @else {
-        <div class="sent" role="status">
+        <div #sent class="sent" role="status" tabindex="-1">
           <span class="sent__mark" aria-hidden="true">✓</span>
           <h3 class="t-h4">Gracias, {{ form.controls.name.value }}.</h3>
           <p class="t-body">

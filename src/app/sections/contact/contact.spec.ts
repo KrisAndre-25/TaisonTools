@@ -34,4 +34,20 @@ describe('Contact', () => {
     expect(el.querySelector('form')).toBeNull();
     expect(el.querySelector('[role="status"]')?.textContent).toContain('Gracias, Ana');
   });
+
+  it('moves focus to the confirmation after sending', async () => {
+    const fixture = TestBed.createComponent(Contact);
+    document.body.appendChild(fixture.nativeElement);
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+
+    type(el, '#contact-name', 'Ana');
+    type(el, '#contact-email', 'ana@example.com');
+    type(el, '#contact-message', 'Necesitamos digitalizar el registro de pedidos.');
+    el.querySelector<HTMLButtonElement>('.form__submit')!.click();
+    await fixture.whenStable();
+
+    expect(document.activeElement).toBe(el.querySelector('.sent'));
+    el.remove();
+  });
 });
