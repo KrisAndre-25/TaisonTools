@@ -131,11 +131,25 @@
     display: grid;
     gap: var(--tt-space-3);
     max-width: 38rem;
-    opacity: 0.4;
-    transition: opacity 500ms var(--tt-ease-out);
 
-    .is-active &,
-    .is-past & {
+    // Upcoming steps recede, but stay legible: the large title keeps ≥3:1 and the
+    // body copy ≥4.5:1 against the ground, so the effect never hides content.
+    > * {
+      opacity: 0.86;
+      transition: opacity 500ms var(--tt-ease-out);
+    }
+
+    > .step__title {
+      opacity: 0.45;
+    }
+
+    // The step number already uses the lightest legible grey; dimming it would drop below 4.5:1.
+    > .step__num {
+      opacity: 1;
+    }
+
+    .is-active & > *,
+    .is-past & > * {
       opacity: 1;
     }
   }
